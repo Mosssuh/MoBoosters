@@ -1,0 +1,49 @@
+Boosters:
+  VaultBooster:
+    # This booster is normal, without actions
+    identifier: default
+    type: SuperiorSkyblock2
+    applicator: Vault
+    boosted: economy
+    boost: 2.5
+    duration: PERM
+    item-info:
+      material: PAPER
+      data: 0
+      name: '&fBooster &8| &d&lCoins'
+      lore:
+        - ''
+        - '&bRedeem this item to receive'
+        - '&ba &ax%boost% &bboost for &a%duration_formatted%'
+        - ''
+        - '&aRight click to claim!'
+  VaultAddBoost:
+    # This booster will only be used to add boost to an already active temporary booster,
+    # just checking that it is of the same type.
+    identifier: default
+    type: SuperiorSkyblock2
+    applicator: Vault
+    boosted: economy
+    boost: '%args_1%'
+    item-info:
+      material: basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzYwYTA4ZGE4ZDNlNzNjNWFkZGNjMTAzODk1NjU2YWM0MDRmZjQyZjJkNWI1Yjc0NmNjZGU2MDdjZTkwNDQzYyJ9fX0=
+      data: 0
+      name: '&fBooster Boost &8| &e&lCoins'
+      lore:
+        - ''
+        - '&8Redeem this item to increase'
+        - '&8the boost of %boosted%'
+        - ''
+        - '&8Boost: &a+%args_1%'
+        - ''
+    actions:
+      ExtraRewards:
+        requirements:
+          - '[EVAL] %moboosters_has_booster_personal:temp:default:vault:economy% equals true'
+        rewards:
+          - '[CHANCE -> 100] CANCEL_MESSAGE && CANCEL_BOOSTER'
+          - '[CHANCE -> 100] ADD_BOOST -> PERSONAL:TEMP:default:vault:economy:%args_1%'
+          - '[CHANCE -> 100] MESSAGE -> &b&lBOOST! &aIncreased +x%args_1% to your %applicator_type% temporary booster for %boosted%'
+        else:
+          - '[CHANCE -> 100] CANCEL_CLAIM && CANCEL_BOOSTER'
+          - '[CHANCE -> 100] MESSAGE -> &cYou don''t have a active temp booster of %applicator_type% for %boosted%'

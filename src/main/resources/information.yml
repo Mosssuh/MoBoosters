@@ -1,0 +1,163 @@
+API:
+  API Class: BoostersAPI
+  Events:
+    - 'ActivatePermanentBoosterEvent'
+    - 'ActivateTemporaryBoosterEvent'
+    - 'ClaimItemBoosterEvent'
+    - 'EndsTemporaryBoosterEvent'
+    - 'IncreaseBoostBoosterEvent'
+    - 'IncreaseTimeBoosterEvent'
+    - 'RemoveBoostBoosterEvent'
+    - 'RemoveTimeBoosterEvent'
+    - 'ApplyBoostEvent'
+
+Required Plugins:
+  - 'MoCore'
+
+Optional Plugins:
+  - 'SuperiorSkyblock2'
+  - 'MoPets'
+
+
+Commands:
+  - '/moboosters reload'
+  - '/moboosters give <code> <amount> <player> <args...>'
+  - '/moboosters giveall <code> <amount> <args...>'
+
+  - '/moboosters activate <code> <player> <actions (true/false)> <args...>'
+
+  - '/moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost> <duration in seconds>'
+  - '/moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost>'
+
+  - '/moboosters addboost <player> <duration type> <identifier> <booster type> <applicator> <boosted> <boost>'
+  - '/moboosters removeboost <player> <duration type> <identifier> <booster type> <applicator> <boosted> <boost>'
+
+  - '/moboosters addtime <player> <identifier> <booster type> <applicator> <boosted> <duration in seconds>'
+  - '/moboosters removetime <player> <identifier> <booster type> <applicator> <boosted> <duration in seconds>'
+
+# Arguments in commands like give, activate, are used for items in the configurations, this is to avoid creating multiple
+# boosters that only change one argument and thus be able to apply it from the command.
+#
+# For example if you have a booster with the booster type Personal, applicator EdPrison, and the boosted tokens, but you want to
+# have several boosters with different boosts but with the same booster type, you would use the args for that.
+Command Args Format: '%args_<number of arg>%'
+
+Placeholders:
+  - '%moboosters_has_booster_<duration type>:<identifier>:<booster type>:<applicator type>:<boosted>%'
+
+  - '%moboosters_boost_<duration type>:<identifier>:<booster type>:<applicator type>:<boosted>%'
+  - '           IDENTIFIER: ALL -> Show you the total boost of all identifiers'
+  - '%moboosters_duration_<identifier>:<booster type>:<applicator type>:<boosted>%'
+  - '%moboosters_formatted_duration_<identifier>:<booster type>:<applicator type>:<boosted>%'
+
+Player Variables:
+  - '%player%'
+Booster Variables:
+  - '%code%'
+  - '%boost%'
+  - '%boost_with_base%'
+  - '%duration%'
+  - '%duration_formatted%'
+  - '%identifier%'
+  - '%booster_type%'
+  - '%applicator_type%'
+  - '%boosted%'
+Local Variables:
+  - '{time_formatter_<time in seconds>}'
+  - '{local_math_<math>} | (Support PlaceholderAPI and Events Variables)'
+  - '{local_changeoutput_<option>_input:<input>_matcher:<matcher>_ifmatch:<if-match>_else:<else>}'
+  - '     Support PlaceholderAPI and Booster Variables'
+  - '     Options:'
+  - '       Strings: equals, !equals, equalsIgnoreCase, !equalsIgnoreCase, startsWith, !startsWith, contains, !contains'
+  - '       Numbers: <=, <, >=, >, ==, !='
+
+
+Actions:
+  Requirements:
+    RequirementTypes:
+      - 'EVAL | Support PlaceholderAPI, Booster Variables, Local Variables'
+    ChanceTypes:
+      - 'CHANCE'
+    RewardTypes:
+      # Support PlaceholderAPI, Events Variables, Booster Variables, Args
+      # Rewards can support multiple rewards or execute randomly, and you can execute to other players with PlaceholderAPI
+      # Example: MESSAGE:%superior_island_member_2% -> &b&lISLAND! &aHas been added 5 beacons to the island
+      - 'CONSOLE_COMMAND | Format: CONSOLE_COMMAND -> <command>'
+      - 'PLAYER_COMMAND | Format: PLAYER_COMMAND -> <command>'
+      - 'PLAYER_COMMAND_AS_OP | Format: PLAYER_COMMAND_AS_OP -> <command>'
+      - 'TITLE | Format: TITLE -> <title>::<subtitle>'
+      - 'SOUND | Format: SOUND -> <sound>::<volume>::<pitch>'
+      - 'BROADCAST_MESSAGE | Format: BROADCAST_MESSAGE -> <message>'
+      - 'BROADCAST_TITLE | Format: BROADCAST_TITLE -> <title>::<subtitle>'
+      - 'JSON | Format: JSON -> <json>'
+      - 'JSON_BROADCAST | Format: JSON_BROADCAST -> <json>'
+      - 'EFFECT | Format: EFFECT -> <effect>::<duration>::<amplifier>'
+      - 'CANCEL_BOOSTER | Format: CANCEL_BOOSTER' # The booster won't be applied to you.
+      - 'CANCEL_CLAIM' # The item won't be claimed
+      - 'CANCEL_MESSAGE | Format: CANCEL_MESSAGE' # Cancel the message when claiming the booster
+      - 'EXECUTE_ACTION | Format: EXECUTE_ACTION -> <action>' # You can execute other default actions of the same item.
+      - 'ADD_BOOST | Format: ADD_BOOST -> <duration type>::<identifier>::<booster type>::<applicator type>::<boosted>::<boost>'
+      - 'REMOVE_BOOST | Format: REMOVE_BOOST -> <duration type>::<identifier>::<booster type>::<applicator type>::<boosted>::<boost>'
+      - 'ADD_TIME | Format: ADD_TIME -> <identifier>::<booster type>::<applicator type>::<boosted>::<duration in seconds>'
+      - 'REMOVE_TIME | Format: REMOVE_TIME -> <identifier>::<booster type>::<applicator type>::<boosted>::<duration in seconds>'
+      - 'SET_BOOSTER | Format: SET_BOOSTER -> <identifier>::<booster type>::<applicator type>::<boosted>::<boost>::<duration>/PERM'
+      - 'ACCUMULATE_BOOSTER | Format: ACCUMULATE_BOOSTER -> <identifier>::<booster type>::<applicator type>::<boosted>::<boost>::<duration>/PERM'
+
+Booster Types:
+  - 'PERSONAL'
+  - 'GLOBAL'
+  - 'SUPERIOSKYBLOCK2'
+Duration Types:
+  - 'PERM'
+  - 'TEMP'
+Boosted Types:
+  - 'MINECRAFT -> experience'
+  - 'JOBSREBORN -> money, exp'
+  - 'PLAYERPOINTS -> points'
+  - 'ESSENTIALSX -> economy'
+  - 'EXCELLENTECONOMY -> <currency id>'
+
+ItemFormat:
+  <code>: # Used to be able to identify boosters in play with configurations
+    identifier: <identifier> # Used to have many booster of the same applicator and boosted (Remove this section to use default identifier or put default)
+    type: <booster type> # Is used to how to apply the booster if is Personal, Global, SuperiorSkyblock2
+    applicator: <applicator type> # Used to know which plugin will apply the boost
+    boosted: <boosted> # Here you put what will be the boost
+    boost: <boost> # For the boost you can use args when creating the item with the command (%args_<number>%
+    duration: <duration in seconds> # Here you need to put the time in seconds, and if the boosted is permanent remove this or put PERM. You can use args too (%args_<number>%).
+    item-info:
+      material: PAPER # It can support custom heads too. Example1 -> material: GOLDEN_APPLE    Example2 -> material: basehead-<head value>
+      # Name and lore support PlaceholderAPI, Booster Variables and Args.
+      name: '&fName'
+      lore:
+        - '&aLine 1'
+        - ''
+        - '&aLine 2'
+        - '&aLine 3'
+        - ''
+      unbreakable: <true/false>
+      unique: <true/false> # The item can't be stacked with other identical items
+      enchantments:
+        - <enchantment>:<level> # You can put multiple enchants. Example -> LUCK:2
+      flags:
+        - <flag> # You can put multiple flags. Example -> HIDE_ENCHANTS
+    actions:
+      <reward name>:
+        cancel_action: <true/false>
+        requirements:
+          # Available requirements EVAL. EVAL support PlaceholderAPI, Booster Variables and Args
+          # For EVAL you can use:
+          #     Separate requirements: ||
+          #     Strings: equals, !equals, equalsIgnoreCase, !equalsIgnoreCase, startsWith, !startsWith, contains, !contains'
+          #     Numbers: <=, <, >=, >, ==, !=
+          - '[<requirement type>] requirement || requirement2 || requirement3'
+        rewards:
+          - '[<chance type>] -> <chance>] <reward type> -> <reward>'
+          - '[<chance type>] -> <chance>] <reward type> -> <reward> && <reward type> -> <reward>'
+          - '[<chance type>] -> <chance>] <reward type> -> <reward> && <reward type> -> <reward> || <reward type> -> <reward>'
+        else:
+          # Else rewards are executed when the requirements aren't met
+          - '[<chance type>] -> <chance>] <reward type> -> <reward>'
+          - '[<chance type>] -> <chance>] <reward type> -> <reward> && <reward type> -> <reward>'
+          - '[<chance type>] -> <chance>] <reward type> -> <reward> && <reward type> -> <reward> || <reward type> -> <reward>'
+

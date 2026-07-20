@@ -1,0 +1,93 @@
+Boosters:
+  MinecraftV1: # This is the code, used to identify every booster items and get the information of them.
+    # In this example the item will be claimed if you don't have an active booster of the same type
+    # and if you already have one with the same boost, the time will be accumulated.
+    identifier: default # Used to have many booster the same applicator and boosted
+    type: Personal # Is used to how to apply the booster if is Personal, Global, SuperiorSkyblock2
+    applicator: Minecraft
+    boosted: experience
+    boost: '%args_1%'
+    duration: '%args_2%' # Here you need to put the time in seconds, and if the boosted is permanent remove this or put PERM
+    item-info:
+      material: basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMwOTNhNWI3NzY0MmQ0MDkyMTEyZjQ2ZWE2ODE0MGZiNWFlMDRiYmQyMzFjZGExMDY2YTA0YzE4Yjg5Yzk0ZSJ9fX0=
+      data: 0
+      name: '&fBooster &8| &e&lExperience'
+      lore:
+        - ''
+        - '&bType: &aPersonal'
+        - '&bBoost: &a+%boost%'
+        - '&bDuration: &a%duration_formatted%'
+        - ''
+        - '&8If you have a %boost% boost, the time'
+        - '&8will be incremented, but the boost'
+        - '&8won''t be accumulated.'
+        - ''
+        - '&aRight click to claim!'
+    actions:
+      ModifiedBoost:
+        requirements:
+          - '[EVAL] %moboosters_has_booster_temp:default:personal:minecraft:experience% equals false'
+        rewards:
+          - '[CHANCE -> 100] CANCEL_MESSAGE && MESSAGE -> &b&lPERSONAL BOOST! &aYou claimed a x%boost% temporary experience booster for %duration_formatted%!'
+        else:
+          - '[CHANCE -> 100] EXECUTE_ACTION -> ModifiedBoostElseIf'
+      ModifiedBoostElseIf:
+        cancel_action: true
+        requirements:
+          - '[EVAL] %moboosters_personal_boost_temp:default:minecraft:experience% == %boost%'
+        rewards:
+          - '[CHANCE -> 100] CANCEL_MESSAGE && CANCEL_BOOSTER'
+          - '[CHANCE -> 100] ADD_TIME -> default:personal:minecraft:experience:%args_2%'
+          - '[CHANCE -> 100] MESSAGE -> &b&lPERSONAL BOOST! &aHas been added %duration_formatted% to your %applicator_type% for %boosted%!'
+        else:
+          - '[CHANCE -> 100] CANCEL_BOOSTER && CANCEL_CLAIM'
+          - '[CHANCE -> 100] MESSAGE -> &b&lPERSONAL BOOST! &cYou can''t claim this booster because you already have an active booster && MESSAGE -> &cand the time can''t be accumulated because it isn''t the same boost.'
+  PlayerPointsBooster:
+    # This booster will be applied globally, but will only be claimed if you are VIP.
+    identifier: default # Used to have many booster the same applicator and boosted
+    type: Global # Is used to how to apply the booster if is Personal, Global, SuperiorSkyblock2
+    applicator: EdPrison_Currency
+    boosted: tokens
+    boost: 2.5
+    duration: PERM # Here you need to put the time in seconds, and if the boosted is permanent remove this or put PERM
+    item-info:
+      material: basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMwOTNhNWI3NzY0MmQ0MDkyMTEyZjQ2ZWE2ODE0MGZiNWFlMDRiYmQyMzFjZGExMDY2YTA0YzE4Yjg5Yzk0ZSJ9fX0=
+      data: 0
+      name: '&fBooster &8| &e&lPoints'
+      lore:
+        - ''
+        - '&bType: &aGlobal'
+        - '&bBoost: &a+%boost%'
+        - '&bDuration: &a%duration_formatted%'
+        - ''
+        - '&bRequirements'
+        - '&r &8- &aVIP Rank'
+        - ''
+        - '&aRight click to claim!'
+    actions:
+      VIPRequirement:
+        requirements:
+          - '[EVAL] %vault_prefix% equals VIP'
+        rewards:
+          - '[CHANCE -> 100] CANCEL_MESSAGE && MESSAGE -> &b&lBOOST! &aYou claimed a x%boost% temporary points booster for %duration_formatted%!'
+        else:
+          - '[CHANCE -> 100] CANCEL_CLAIM && CANCEL_BOOSTER'
+          - '[CHANCE -> 100] MESSAGE -> &cYou can''t claim this booster because you aren''t VIP.'
+  MobCoins:
+    # This booster is normal, without actions
+    identifier: default
+    type: SuperiorSkyblock2
+    applicator: QuadrexMobCoins
+    boosted: MobCoins
+    boost: 2.5
+    duration: PERM
+    item-info:
+      material: PAPER
+      data: 0
+      name: '&fBooster &8| &d&lMobCoins'
+      lore:
+        - ''
+        - '&bRedeem this item to receive'
+        - '&ba &ax%boost% &bboost for &a%duration_formatted%'
+        - ''
+        - '&aRight click to claim!'

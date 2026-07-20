@@ -1,0 +1,74 @@
+INVALID_CODE: '&8[&bMoBoosters&8] &cYou''re indicating an invalid code!'
+INVALID_AMOUNT: '&8[&bMoBoosters&8] &cYou''re indicating an invalid amount!'
+INVALID_PLAYER: '&8[&bMoBoosters&8] &cThe player is offline or had not joined to the server!'
+INVALID_DURATION_TYPE: '&8[&bMoBoosters&8] &cYou''re indicating an invalid duration type!'
+INVALID_IDENTIFIER: '&8[&bMoBoosters&8] &cYou''re indicating an invalid identifier!'
+INVALID_BOOSTER_TYPE: '&8[&bMoBoosters&8] &cYou''re indicating an invalid booster type!'
+INVALID_APPLICATOR_TYPE: '&8[&bMoBoosters&8] &cYou''re indicating an invalid applicator type!'
+INVALID_BOOST: '&8[&bMoBoosters&8] &cYou''re indicating an invalid boost!'
+INVALID_DURATION: '&8[&bMoBoosters&8] &cYou''re indicating an invalid duration!'
+INVALID_ISLAND_NAME: '&8[&bMoBoosters&8] &cYou''re indicating an invalid island name!'
+
+NO_PERMISSION: '&8[&bMoBoosters&8] &cYou don''t have permission!'
+
+#Variables: %amount%, %code%, %boost%, %duration%, %identifier%, %booster_type%, %applicator_type%, %boosted%
+ACTIVATE_BOOSTER_SENDER: '&8[&bMoBoosters&8] &aYou activated the &b%code% &abooster to &b%player%!&a'
+
+#Variables: %amount%, %code%, %boost%, %duration%, %identifier%, %booster_type%, %applicator_type%, %boosted%
+GIVE_BOOSTER_ITEM_RECEIVER: '&8[&bMoBoosters&8] &aYou received the &b%code% &abooster item!'
+GIVE_BOOSTER_ITEM_SENDER: '&8[&bMoBoosters&8] &aYou gave to &b%player% &athe &b%code% &abooster item!'
+
+#Variables: %code%, %amount%
+GIVE_ALL_BOOSTER_ITEM_SENDER: '&8[&bMoBoosters&8] &aYou gave everyone the &b%code% &abooster item!'
+
+#Variables: %cooldown%
+COOLDOWN: '&8[&bMoBoosters&8] &cYou have to wait %cooldown% to do it again'
+
+#Variables: %identifier%, %booster_type%, %applicator_type%, %boosted%, %boost%, %duration%, %duration_formatted%
+
+SET_TEMP_BOOSTER_SENDER: '&8[&bMoBoosters&8] &aThe temporary &b%booster_type% &abooster for &b%player% &aof &b%applicator_type% &afor &b%boosted% &ahas been established to &bx%boost% &aduring &b%duration_formatted%&a!'
+SET_PERM_BOOSTER_SENDER: '&8[&bMoBoosters&8] &aThe permanent &b%booster_type% &abooster for &b%player% &aof &b%applicator_type% &afor &b%boosted% &ahas been established to &bx%boost%&a!'
+
+REMOVE_BOOSTER_SENDER: '&8[&bMoBoosters&8] &8[%booster_type%] &aThe %duration_type% booster for %player% &aof &b%applicator_type% &afor &b%boosted% &ahas been removed!'
+
+PERSONAL_TEMP_BOOSTER_START: '&8[&bMoBoosters&8] &aHas been started a temporary &bx%boost% &abooster of &b%applicator_type% &afor &b%boosted% &aduring &b%duration_formatted%&a!'
+PERSONAL_TEMP_BOOSTER_END: '&8[&bMoBoosters&8] &aYour temporary &bx%boost% &aof &b%applicator_type% &afor &b%boosted% &ahas ended!'
+PERSONAL_TEMP_BOOSTER_ADD_TIME: '&8[&bMoBoosters&8] &aYour &b%duration_type% &abooster of &b%applicator_type% &afor &b%boosted% &awill last &b%duration_formatted% &alonger.'
+PERSONAL_TEMP_BOOSTER_REMOVE_TIME: '&8[&bMoBoosters&8] &aYour &b%duration_type% &abooster of &b%applicator_type% &afor &b%boosted% &awill last &b%duration_formatted% &aless.'
+PERSONAL_BOOSTER_SET_BOOST: '&8[&bMoBoosters&8] &aYour &b%duration_type% &abooster of &b%applicator_type% &afor &b%boosted% &ahas been established to &bx%boost%'
+PERSONAL_BOOSTER_ADD_BOOST: '&8[&bMoBoosters&8] &aYour &b%duration_type% &abooster of &b%applicator_type% &afor &b%boosted% &ahas been &bx%boost% &aboost more.'
+PERSONAL_BOOSTER_REMOVE_BOOST: '&8[&bMoBoosters&8] &aYour &b%duration_type% &abooster of &b%applicator_type% &afor &b%boosted% &awill have &bx%boost% &aboost less.'
+PERSONAL_BOOSTER_ALREADY_ACTIVE: '&8[&bMoBoosters&8] &cYou already have a &bx%boost% &ctemporary &b%identifier% &cbooster of &b%applicator_type% &cfor &b%boosted% &cduring &b%duration_formatted%&c.'
+
+
+
+GLOBAL_TEMP_BOOSTER_START: '&8[&bMoBoosters&8] &aA temporary global &bx%boost% &abooster has been started of &b%applicator_type% &afor &b%boosted% &aduring &b%duration_formatted%&a!'
+GLOBAL_TEMP_BOOSTER_END: '&8[&bMoBoosters&8] &aYour temporary &bx%boost% &aglobal booster of &b%applicator_type% &afor &b%boosted% &ahas ended!'
+GLOBAL_BOOSTER_SET_BOOST: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aglobal booster of &b%applicator_type% &afor &b%boosted% &ahas been established to &bx%boost%&a.'
+GLOBAL_TEMP_BOOSTER_ADD_TIME: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aglobal booster of &b%applicator_type% &afor &b%boosted% &awill last &b%duration_formatted% &alonger.'
+GLOBAL_TEMP_BOOSTER_REMOVE_TIME: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aglobal booster of &b%applicator_type% &afor &b%boosted% &awill last &b%duration_formatted% &aless.'
+GLOBAL_BOOSTER_ADD_BOOST: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aglobal booster of &b%applicator_type% &afor &b%boosted% &ahas been &bx%boost% &aboost more.'
+GLOBAL_BOOSTER_REMOVE_BOOST: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aglobal booster of &b%applicator_type% &afor &b%boosted% &awill have &bx%boost% &aboost less.'
+GLOBAL_BOOSTER_ALREADY_ACTIVE: '&8[&bMoBoosters&8] &cIs already active a &bx%boost% &ctemporary &b%identifier% &cglobal booster of &b%applicator_type% &cfor &b%boosted% &cduring &b%duration_formatted%&c.'
+
+SUPERIORSKYBLOCK2_TEMP_BOOSTER_START: '&8[&bMoBoosters&8] &aA temporary island &bx%boost% &abooster has been started of &b%applicator_type% &afor &b%boosted% &aduring &b%duration_formatted%&a!'
+SUPERIORSKYBLOCK2_TEMP_BOOSTER_END: '&8[&bMoBoosters&8] &aThe temporary &bx%boost% &aisland booster of &b%applicator_type% &afor &b%boosted% &ahas ended!'
+SUPERIORSKYBLOCK2_BOOSTER_SET_BOOST: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aisland booster of &b%applicator_type% &afor &b%boosted% &ahas been established to &bx%boost%&a.'
+SUPERIORSKYBLOCK2_TEMP_BOOSTER_ADD_TIME: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aisland booster of &b%applicator_type% &afor &b%boosted% &awill last &b%duration_formatted% &alonger.'
+SUPERIORSKYBLOCK2_TEMP_BOOSTER_REMOVE_TIME: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aisland booster of &b%applicator_type% &afor &b%boosted% &awill last &b%duration_formatted% &aless.'
+SUPERIORSKYBLOCK2_BOOSTER_ADD_BOOST: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aisland boost of &b%applicator_type% &afor &b%boosted% &ahas been &bx%boost% &aboost more.'
+SUPERIORSKYBLOCK2_BOOSTER_REMOVE_BOOST: '&8[&bMoBoosters&8] &aThe &b%duration_type% &aisland booster of &b%applicator_type% &afor &b%boosted% &awill have &bx%boost% &aboost less.'
+
+SUPERIORSKYBLOCK2_BOOSTER_ALREADY_ACTIVE: '&8[&bMoBoosters&8] &cIs already active a &bx%boost% &ctemporary &b%identifier% &aisland booster of &b%applicator_type% &afor &b%boosted% &aduring &b%duration_formatted%&c.'
+
+
+BOOSTERS:
+  - '&b&lBOOSTERS'
+  - ''
+  - '&b&lPersonal'
+  - '&6Tokens: &7%moboosters_boost_temp:default:personal:edprison:tokens% &8| &f%moboosters_formatted_duration_default:personal:edprison:tokens%'
+  - ''
+  - '&b&lGlobal:'
+  - '&6Tokens: &7%moboosters_boost_temp:default:global:edprison:tokens% &8| &f%moboosters_formatted_duration_default:global:edprison:tokens%'
+  - '&dMobCoins: &7%moboosters_boost_perm:default:personal:quadrexmobcoins:mobcoins%'
+  - ''

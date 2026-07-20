@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MoBoosters:jar">
+    <output-path>$USER_HOME$/Escritorio/MoJars</output-path>
+    <root id="archive" name="MoBoosters.jar">
+      <element id="module-output" name="MoBoosters" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,20 @@
+Config:
+  # The identifier is used to have several boosters of the same type, this is in case you want
+  # the booster to be applied by different plugins, for example, you want one boost to be applied to Pets, another to Armor, etc.
+  # If the identifier is not here, this booster will not work.
+  identifiers:
+    - ArmorBooster
+  time-format:
+    year: 'y'
+    month: 'm'
+    week: 'w'
+    day: 'd'
+    hour: 'h'
+    minute: 'm'
+    second: 's'
+  save-in-database-interval: 300
+  claim-booster-item-cooldown: 3
+  # accumulative-boosters is an option to accrue the boost upon reclamation
+  # TEMPORARY BOOSTER: It is accumulated if the booster to be claimed is the same boost, then the time would be accumulated.
+  # PERMANENT BOOSTER: Any booster is accumulated.
+  accumulative-boosters: true

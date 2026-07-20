@@ -1,0 +1,19 @@
+name: MoBoosters
+version: '0.0.1'
+main: mv.mossuh.moboosters.MoBoosters
+api-version: '1.13'
+
+depend:
+  - MoCore
+
+softdepend:
+  - NBTAPI
+  - SuperiorSkyblock2
+  - Vault
+
+commands:
+  moboosters:
+    description: MoBoosters Commands
+    aliases:
+      - mobooster
+      - moboost
