@@ -5,11 +5,15 @@ api-version: '1.13'
 
 depend:
   - MoCore
+  - NBTAPI
 
 softdepend:
-  - NBTAPI
+  - PlaceholderAPI
   - SuperiorSkyblock2
   - Vault
+  - EssentialsX
+  - JobsReborn
+  - PlayerPoints
 
 commands:
   moboosters:
