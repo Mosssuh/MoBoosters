@@ -14,6 +14,8 @@ softdepend:
   - EssentialsX
   - JobsReborn
   - PlayerPoints
+  - MoPets
+  - MoArmors
 
 commands:
   moboosters:
