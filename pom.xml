@@ -115,6 +115,20 @@
             <systemPath>${project.basedir}/libs/MoCore.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>mv.mossuh</groupId>
+            <artifactId>MoPets</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/MoPets.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>mv.mossuh</groupId>
+            <artifactId>MoArmors</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/MoArmors.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>net.essentialsx</groupId>
             <artifactId>EssentialsX</artifactId>
             <version>2.19.0</version>

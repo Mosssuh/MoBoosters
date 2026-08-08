@@ -15,8 +15,14 @@ Required Plugins:
   - 'MoCore'
 
 Optional Plugins:
+  - 'PlaceholderAPI'
   - 'SuperiorSkyblock2'
+  - 'Vault'
+  - 'EssentialsX'
+  - 'JobsReborn'
+  - 'PlayerPoints'
   - 'MoPets'
+  - 'MoArmors'
 
 
 Commands:
@@ -116,6 +122,8 @@ Boosted Types:
   - 'PLAYERPOINTS -> points'
   - 'ESSENTIALSX -> economy'
   - 'EXCELLENTECONOMY -> <currency id>'
+  - 'MOPETS -> exp'
+  - 'MOARMORS -> exp'
 
 ItemFormat:
   <code>: # Used to be able to identify boosters in play with configurations

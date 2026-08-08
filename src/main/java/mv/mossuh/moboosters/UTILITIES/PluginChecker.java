@@ -1,5 +1,7 @@
 package mv.mossuh.moboosters.UTILITIES;
 
+import mv.mossuh.moboosters.APPLICATORS.MoArmorsBoost;
+import mv.mossuh.moboosters.APPLICATORS.MoPetsBoost;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
 import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.EVENTS.PluginCheckerEvent;
@@ -32,6 +34,14 @@ public class PluginChecker implements Listener {
                 BoosterDataManager.registerDatabaseInMaps(BoosterType.SUPERIORSKYBLOCK2);
                 BoosterCooldown.initializeActiveBoosters(BoosterType.SUPERIORSKYBLOCK2);
                 UtilString.get(Config.PREFIX+" &aDetected SuperiorSkyblock2, used as soft-depend. Enabling classes.").hex().sendMessageInConsole();
+                break;
+            case MoPets:
+                instance.getServer().getPluginManager().registerEvents(new MoPetsBoost(), instance);
+                UtilString.get(Config.PREFIX+" &aDetected MoPets, used as soft-depend.").hex().sendMessageInConsole();
+                break;
+            case MoArmors:
+                instance.getServer().getPluginManager().registerEvents(new MoArmorsBoost(), instance);
+                UtilString.get(Config.PREFIX+" &aDetected MoArmors, used as soft-depend.").hex().sendMessageInConsole();
                 break;
         }
     }
