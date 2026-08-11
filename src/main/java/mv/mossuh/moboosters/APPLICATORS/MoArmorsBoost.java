@@ -32,8 +32,7 @@ public class MoArmorsBoost implements Listener {
         ReceiveType type = event.getReceiveType();
         if (!type.equals(ReceiveType.ADD)) return;
 
-        Player player = event.getPlayer();
-        UUID uuid = player.getUniqueId();
+        UUID uuid = event.getUUID();
 
         Piece pet = event.getPiece();
         ConfigArmor config = pet.getConfigArmor();
@@ -50,7 +49,7 @@ public class MoArmorsBoost implements Listener {
         if (identifier != null && armorIdentifier.isBoosterIdentifier()) {
             personal = ActiveBoosterManager.getBoosts(new PersonalBooster(uuid, new BoosterIdentifier(identifier, BoosterType.PERSONAL, ApplicatorType.MOPETS, "exp")), false);
             global = ActiveBoosterManager.getBoosts(new GlobalBooster(new BoosterIdentifier(identifier, BoosterType.GLOBAL, ApplicatorType.MOPETS, "exp")), false);
-            superiorSkyblock2 = ActiveBoosterManager.getBoosts(new SuperiorSkyblock2Booster(UtilMethods.getIslandUUID(player), new BoosterIdentifier(identifier, BoosterType.SUPERIORSKYBLOCK2, ApplicatorType.MOPETS, "exp")), false);
+            superiorSkyblock2 = ActiveBoosterManager.getBoosts(new SuperiorSkyblock2Booster(UtilMethods.getIslandUUIDByPlayerUUID(uuid), new BoosterIdentifier(identifier, BoosterType.SUPERIORSKYBLOCK2, ApplicatorType.MOPETS, "exp")), false);
         } else {
             Map<BoosterType, Double> boosts = ActiveBoosterManager.getTotalBoostCached(uuid, applicator, boosted);
             personal = boosts.getOrDefault(BoosterType.PERSONAL, 0.0);
