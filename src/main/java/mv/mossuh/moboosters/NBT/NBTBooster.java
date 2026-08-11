@@ -1,9 +1,9 @@
 package mv.mossuh.moboosters.NBT;
 
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.NBT.NBTMethods;
 import org.bukkit.inventory.ItemStack;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
 
@@ -53,7 +53,7 @@ public class NBTBooster {
         return UtilMethods.getBoosterType(NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Type"));
     }
     public static ApplicatorType getApplicator(ItemStack itemStack) {
-        return UtilMethods.getApplicatorType(NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Applicator"));
+        return ApplicatorType.convert(NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Applicator"));
     }
     public static String getBoosted(ItemStack itemStack) {
         return NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Boosted");

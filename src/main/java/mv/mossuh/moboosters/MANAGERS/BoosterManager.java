@@ -17,7 +17,6 @@ import mv.mossuh.moboosters.API.Events.*;
 import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
 import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItems;
 import mv.mossuh.moboosters.COOLDOWN.BoosterCooldown;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 
@@ -337,10 +336,10 @@ public class BoosterManager {
     }
 
     public double getBoost(Booster booster, boolean ignoreIdentifier) {
-        return ActiveBoosterManager.getBoosts(booster, ignoreIdentifier);
+        return ActiveBoosterManager.getBoost(booster, ignoreIdentifier);
     }
     public double getBoost(DurationType durationType, Booster booster, boolean ignoreIdentifier) {
-        return ActiveBoosterManager.getBoosts(durationType, booster, ignoreIdentifier);
+        return ActiveBoosterManager.getBoost(durationType, booster, ignoreIdentifier);
     }
 
     public List<ActiveBooster> getBoosters(BoosterType boosterType) {
@@ -350,7 +349,7 @@ public class BoosterManager {
         return ActiveBoosterManager.getActiveBooster(booster);
     }
 
-    public static List<ActiveBooster> getBoosters(BoosterType boosterType, ApplicatorType applicatorType) {
+    public static List<ActiveBooster> getBoosters(BoosterType boosterType, String applicatorType) {
         List<ActiveBooster> selected = new ArrayList<>();
         List<ActiveBooster> boosters = ActiveBoosterManager.getActiveBoosters();
         for (ActiveBooster booster : boosters) {
@@ -362,7 +361,7 @@ public class BoosterManager {
         return selected;
     }
 
-    public static void removeIslandBoosters(UUID islandUUID, ApplicatorType applicatorType) {
+    public static void removeIslandBoosters(UUID islandUUID, String applicatorType) {
         List<Booster> removed = new ArrayList<>();
         List<ActiveBooster> boosters = ActiveBoosterManager.getActiveBoosters(BoosterType.SUPERIORSKYBLOCK2);
         for (ActiveBooster booster : boosters) {
@@ -384,7 +383,7 @@ public class BoosterManager {
         // BoosterDataManager.removeActiveBooster(removed);
     }
 
-    public static void removeIslandBoosters(UUID islandUUID, ApplicatorType applicatorType, String boosted) {
+    public static void removeIslandBoosters(UUID islandUUID, String applicatorType, String boosted) {
         List<Booster> removed = new ArrayList<>();
         List<ActiveBooster> boosters = ActiveBoosterManager.getActiveBoosters(BoosterType.SUPERIORSKYBLOCK2);
         for (ActiveBooster booster : boosters) {

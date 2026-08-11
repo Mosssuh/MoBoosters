@@ -1,6 +1,7 @@
 package mv.mossuh.moboosters.DATA.Datas;
 
 import mv.mossuh.moboosters.BOOSTERS.ActiveBooster;
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.MANAGERS.ActiveBoosterManager;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.Boost;
@@ -8,7 +9,6 @@ import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoosterDuration;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
@@ -34,7 +34,7 @@ public class BoosterSuperiorSkyblock2Data {
                 UUID uuid = UUID.fromString(rsTemporary.getString("uuid"));
                 String identifier = rsTemporary.getString("identifier");
                 BoosterType boosterType = BoosterType.SUPERIORSKYBLOCK2;
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(rsTemporary.getString("applicatorType"));
+                ApplicatorType applicatorType = ApplicatorType.convert(rsTemporary.getString("applicatorType"));
                 String boosted = rsTemporary.getString("boosted");
                 double boost = rsTemporary.getDouble("boost");
                 long remainingDuration = rsTemporary.getLong("remainingDuration");
@@ -51,7 +51,7 @@ public class BoosterSuperiorSkyblock2Data {
                 UUID uuid = UUID.fromString(rsPermanent.getString("uuid"));
                 String identifier = rsPermanent.getString("identifier");
                 BoosterType boosterType = BoosterType.SUPERIORSKYBLOCK2;
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(rsPermanent.getString("applicatorType"));
+                ApplicatorType applicatorType = ApplicatorType.convert(rsPermanent.getString("applicatorType"));
                 String boosted = rsPermanent.getString("boosted");
                 double boost = rsPermanent.getDouble("boost");
 

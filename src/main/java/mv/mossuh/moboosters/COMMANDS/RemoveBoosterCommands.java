@@ -1,5 +1,6 @@
 package mv.mossuh.moboosters.COMMANDS;
 
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -13,7 +14,6 @@ import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
 import mv.mossuh.moboosters.CONFIGS.Messages;
 import mv.mossuh.moboosters.MANAGERS.BoosterManager;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
@@ -33,7 +33,7 @@ public class RemoveBoosterCommands {
                 // /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> [<player>/<islandName]
                 String identifier = strings[1];
                 BoosterType boosterType = UtilMethods.getBoosterType(strings[2]);
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(strings[3]);
+                ApplicatorType applicatorType = ApplicatorType.convert(strings[3]);
                 String boosted = strings[4];
                 DurationType durationType = UtilMethods.getDurationType(strings[5]);
                 String forWho = strings[6];

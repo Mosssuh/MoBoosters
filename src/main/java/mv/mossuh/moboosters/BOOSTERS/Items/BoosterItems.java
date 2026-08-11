@@ -1,6 +1,7 @@
 package mv.mossuh.moboosters.BOOSTERS.Items;
 
 import de.tr7zw.nbtapi.NBTItem;
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.UTILITIES.ARGS.CommandArgs.CommandArgs;
 import mv.mossuh.mocore.VERSION.ServerVersion;
 import org.bukkit.Color;
@@ -17,7 +18,6 @@ import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterInfo;
 import mv.mossuh.moboosters.UTILITIES.Enchantments.Enchant;
 import mv.mossuh.moboosters.UTILITIES.Enchantments.Enchantments;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 import mv.mossuh.moboosters.NBT.NBTBooster;

@@ -119,88 +119,61 @@ public class Rewards {
                     EntityType entityReceiverType = (entityReceiver != null ? entityReceiver.getType() : EntityType.UNKNOWN);
 
                     if (executeDefaultRewards) {
-                        switch (rewardType) {
-                            case CONSOLE_COMMAND:
-                                RewardMethods.consoleCommand(reward);
-                                break;
-                            case PLAYER_COMMAND:
-                                RewardMethods.playerCommand(entityReceiver, reward);
-                                break;
-                            case PLAYER_COMMAND_AS_OP:
-                                RewardMethods.playerCommandAsOP(entityReceiver, reward);
-                                break;
-                            case MESSAGE:
-                                RewardMethods.playerMessage(entityReceiver, reward);
-                                break;
-                            case TITLE:
-                                RewardMethods.playerTitle(entityReceiver, reward);
-                                break;
-                            case SOUND:
-                                RewardMethods.playerSound(entityReceiver, reward);
-                                break;
-                            case BROADCAST_MESSAGE:
-                                RewardMethods.broadcastMessage(reward);
-                                break;
-                            case BROADCAST_TITLE:
-                                RewardMethods.broadcastTitle(reward);
-                                break;
-                            case JSON:
-                                RewardMethods.json(entityReceiver, reward);
-                                break;
-                            case JSON_BROADCAST:
-                                RewardMethods.jsonBroadcast(reward);
-                                break;
-                            case EFFECT:
-                                RewardMethods.effect(entityReceiver, reward);
-                                break;
-                            case EXECUTE_ACTION:
-                                if (entityReceiverType == EntityType.PLAYER) {
-                                    MoAction rewardAction = actions.getAction(reward);
-                                    ExecuteAction exec = new ExecuteAction(rewardAction, (Player) entityReceiver, boosterItem, variables)
-                                            .addAllDefaultVariables().check();
-                                    if (exec.cancelMessage()) this.cancelMessage = true;
-                                    if (exec.cancelBooster()) this.cancelBooster = true;
-                                    if (exec.cancelClaim()) this.cancelClaim = true;
-                                }
-                                break;
-                            case ADD_BOOST:
-                                RewardMethods.addBoost(entityReceiver, reward, cancelMessage);
-                                break;
-                            case REMOVE_BOOST:
-                                RewardMethods.removeBoost(entityReceiver, reward, cancelMessage);
-                                break;
-                            case ADD_TIME:
-                                RewardMethods.addTime(entityReceiver, reward, cancelMessage);
-                                break;
-                            case REMOVE_TIME:
-                                RewardMethods.removeTime(entityReceiver, reward, cancelMessage);
-                                break;
-                            case SET_BOOSTER:
-                                RewardMethods.setBooster(entityReceiver, reward, cancelMessage);
-                                break;
-                            case ACCUMULATE_BOOSTER:
-                                accumulateFounded = true;
-                                boolean cancelled = RewardMethods.accumulateBooster(entityReceiver, reward, cancelMessage);
-                                if (!cancelled) accumulateApplied = true;
-                                break;
-                            default:
-                                break;
+                        if (rewardType.equals(RewardType.CONSOLE_COMMAND)) {
+                            RewardMethods.consoleCommand(reward);
+                        } else if (rewardType.equals(RewardType.PLAYER_COMMAND)) {
+                            RewardMethods.playerCommand(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.PLAYER_COMMAND_AS_OP)) {
+                            RewardMethods.playerCommandAsOP(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.MESSAGE)) {
+                            RewardMethods.playerMessage(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.TITLE)) {
+                            RewardMethods.playerTitle(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.SOUND)) {
+                            RewardMethods.playerSound(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.BROADCAST_MESSAGE)) {
+                            RewardMethods.broadcastMessage(reward);
+                        } else if (rewardType.equals(RewardType.BROADCAST_TITLE)) {
+                            RewardMethods.broadcastTitle(reward);
+                        } else if (rewardType.equals(RewardType.JSON)) {
+                            RewardMethods.json(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.JSON_BROADCAST)) {
+                            RewardMethods.jsonBroadcast(reward);
+                        } else if (rewardType.equals(RewardType.EFFECT)) {
+                            RewardMethods.effect(entityReceiver, reward);
+                        } else if (rewardType.equals(RewardType.EXECUTE_ACTION)) {
+                            if (entityReceiverType == EntityType.PLAYER) {
+                                MoAction rewardAction = actions.getAction(reward);
+                                ExecuteAction exec = new ExecuteAction(rewardAction, (Player) entityReceiver, boosterItem, variables)
+                                        .addAllDefaultVariables().check();
+                                if (exec.cancelMessage()) this.cancelMessage = true;
+                                if (exec.cancelBooster()) this.cancelBooster = true;
+                                if (exec.cancelClaim()) this.cancelClaim = true;
+                            }
+                        } else if (rewardType.equals(RewardType.ADD_BOOST)) {
+                            RewardMethods.addBoost(entityReceiver, reward, cancelMessage);
+                        } else if (rewardType.equals(RewardType.REMOVE_BOOST)) {
+                            RewardMethods.removeBoost(entityReceiver, reward, cancelMessage);
+                        } else if (rewardType.equals(RewardType.ADD_TIME)) {
+                            RewardMethods.addTime(entityReceiver, reward, cancelMessage);
+                        } else if (rewardType.equals(RewardType.REMOVE_TIME)) {
+                            RewardMethods.removeTime(entityReceiver, reward, cancelMessage);
+                        } else if (rewardType.equals(RewardType.SET_BOOSTER)) {
+                            RewardMethods.setBooster(entityReceiver, reward, cancelMessage);
+                        } else if (rewardType.equals(RewardType.ACCUMULATE_BOOSTER)) {
+                            accumulateFounded = true;
+                            boolean cancelled = RewardMethods.accumulateBooster(entityReceiver, reward, cancelMessage);
+                            if (!cancelled) accumulateApplied = true;
                         }
                     }
 
                     if (executeCancellationRewards) {
-                        switch (rewardType) {
-                            case CANCEL_MESSAGE:
-                                cancelMessage = true;
-                                break;
-                            case CANCEL_BOOSTER:
-                                cancelBooster = true;
-                                break;
-                            case CANCEL_CLAIM:
-                                cancelClaim = true;
-                                break;
-                            default:
-                                break;
+                        if (rewardType.equals(RewardType.CANCEL_MESSAGE)) {
+                            cancelMessage = true;
+                        } else if (rewardType.equals(RewardType.CANCEL_BOOSTER)) {
+                            cancelBooster = true;
+                        } else if (rewardType.equals(RewardType.CANCEL_CLAIM)) {
+                            cancelClaim = true;
                         }
                     }
                 }

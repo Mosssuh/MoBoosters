@@ -2,6 +2,7 @@ package mv.mossuh.moboosters.UTILITIES;
 
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -17,7 +18,6 @@ import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.GlobalBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.PersonalBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 import mv.mossuh.moboosters.CONFIGS.Messages;
@@ -135,7 +135,7 @@ public class RewardMethods {
                 DurationType durationType = UtilMethods.getDurationType(informationSplit[0]);
                 String identifier = informationSplit[1];
                 BoosterType boosterType = UtilMethods.getBoosterType(informationSplit[2]);
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(informationSplit[3]);
+                ApplicatorType applicatorType = ApplicatorType.convert(informationSplit[3]);
                 String boosted = informationSplit[4];
                 if (!UtilMethods.isNumeric(informationSplit[5])) {
                     return;
@@ -195,7 +195,7 @@ public class RewardMethods {
                 DurationType durationType = UtilMethods.getDurationType(informationSplit[0]);
                 String identifier = informationSplit[1];
                 BoosterType boosterType = UtilMethods.getBoosterType(informationSplit[2]);
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(informationSplit[3]);
+                ApplicatorType applicatorType = ApplicatorType.convert(informationSplit[3]);
                 String boosted = informationSplit[4];
                 if (!UtilMethods.isNumeric(informationSplit[5])) {
                     return;
@@ -254,7 +254,7 @@ public class RewardMethods {
                 DurationType durationType = DurationType.TEMP;
                 String identifier = informationSplit[0];
                 BoosterType boosterType = UtilMethods.getBoosterType(informationSplit[1]);
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(informationSplit[2]);
+                ApplicatorType applicatorType = ApplicatorType.convert(informationSplit[2]);
                 String boosted = informationSplit[3];
                 if (!UtilMethods.isNumeric(informationSplit[4])) {
                     return;
@@ -308,7 +308,7 @@ public class RewardMethods {
             if  (split.length < 5) return true;
             String identifier = split[0];
             BoosterType boosterType = UtilMethods.getBoosterType(split[1]);
-            ApplicatorType applicatorType =  UtilMethods.getApplicatorType(split[2]);
+            ApplicatorType applicatorType = ApplicatorType.convert(split[2]);
             String boosted = split[3];
             double boost;
             try {
@@ -380,7 +380,7 @@ public class RewardMethods {
             if  (split.length < 5) return;
             String identifier = split[0];
             BoosterType boosterType = UtilMethods.getBoosterType(split[1]);
-            ApplicatorType applicatorType =  UtilMethods.getApplicatorType(split[2]);
+            ApplicatorType applicatorType = ApplicatorType.convert(split[2]);
             String boosted = split[3];
             double boost;
             try {
@@ -438,7 +438,7 @@ public class RewardMethods {
                 DurationType durationType = DurationType.TEMP;
                 String identifier = informationSplit[0];
                 BoosterType boosterType = UtilMethods.getBoosterType(informationSplit[1]);
-                ApplicatorType applicatorType = UtilMethods.getApplicatorType(informationSplit[2]);
+                ApplicatorType applicatorType = ApplicatorType.convert(informationSplit[3]);
                 String boosted = informationSplit[3];
                 if (!UtilMethods.isNumeric(informationSplit[4])) {
                     return;

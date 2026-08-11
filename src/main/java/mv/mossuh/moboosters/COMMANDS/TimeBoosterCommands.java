@@ -2,6 +2,7 @@ package mv.mossuh.moboosters.COMMANDS;
 
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
@@ -16,7 +17,6 @@ import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.InvalidBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.PersonalBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
@@ -39,7 +39,7 @@ public class TimeBoosterCommands {
                         String identifier = strings[2];
                         DurationType durationType = DurationType.TEMP;
                         BoosterType boosterType = UtilMethods.getBoosterType(strings[3]);
-                        ApplicatorType applicatorType = UtilMethods.getApplicatorType(strings[4]);
+                        ApplicatorType applicatorType = ApplicatorType.convert(strings[4]);
                         String boosted = strings[5];
                         String durationString = strings[6];
                         long duration = 0;
@@ -106,7 +106,7 @@ public class TimeBoosterCommands {
                         String identifier = strings[2];
                         DurationType durationType = DurationType.TEMP;
                         BoosterType boosterType = UtilMethods.getBoosterType(strings[3]);
-                        ApplicatorType applicatorType = UtilMethods.getApplicatorType(strings[4]);
+                        ApplicatorType applicatorType = ApplicatorType.convert(strings[4]);
                         String boosted = strings[5];
                         String durationString = strings[6];
                         long duration = 0;

@@ -4,6 +4,8 @@ import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
 
+import java.util.Objects;
+
 public class BoosterIdentifier {
 
     private String identifier = "default";
@@ -24,7 +26,7 @@ public class BoosterIdentifier {
     public String getBoosted() { return boosted; }
 
     public boolean isIdentifier() {
-        return Config.IDENTIFIERS.hasIdentifier(identifier) && boosterType != BoosterType.NONE && applicatorType != ApplicatorType.NONE && !boosted.isEmpty();
+        return Config.IDENTIFIERS.hasIdentifier(identifier) && boosterType != BoosterType.NONE && !Objects.equals(applicatorType, ApplicatorType.NONE) && !boosted.isEmpty();
     }
 
     public boolean equalsIgnoreIdentifier(BoosterIdentifier boosterIdentifier) {
@@ -43,6 +45,6 @@ public class BoosterIdentifier {
     }
 
     public String toKey() {
-        return identifier+"::"+boosterType.name()+"::"+applicatorType.name()+"::"+boosted;
+        return identifier+"::"+boosterType.name()+"::"+applicatorType+"::"+boosted;
     }
 }

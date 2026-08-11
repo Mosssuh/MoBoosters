@@ -3,11 +3,10 @@ package mv.mossuh.moboosters.UTILITIES;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
-import mv.mossuh.mocore.ENUMS.ChanceType;
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
-import mv.mossuh.mocore.UTILITIES.UsefulMethods;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
@@ -17,19 +16,13 @@ import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.PersonalBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
 import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
 import mv.mossuh.moboosters.CONFIGS.Messages;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.text.NumberFormat;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UtilMethods {
 
@@ -142,18 +135,6 @@ public class UtilMethods {
             }
         }
         return boosterType;
-    }
-    public static ApplicatorType getApplicatorType(String applicatorTypeString) {
-        ApplicatorType applicatorType = ApplicatorType.NONE;
-
-        if (applicatorTypeString != null) {
-            for (ApplicatorType at : ApplicatorType.values()) {
-                if (at.name().equalsIgnoreCase(applicatorTypeString)) {
-                    return at;
-                }
-            }
-        }
-        return applicatorType;
     }
 
 

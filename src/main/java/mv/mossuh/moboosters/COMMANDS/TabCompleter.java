@@ -1,12 +1,12 @@
 package mv.mossuh.moboosters.COMMANDS;
 
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
 import mv.mossuh.moboosters.CONFIGS.Configs;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 

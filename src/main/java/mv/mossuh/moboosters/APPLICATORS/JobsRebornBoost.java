@@ -5,7 +5,6 @@ import com.gamingmesh.jobs.container.CurrencyType;
 import mv.mossuh.moboosters.API.Events.PlayerApplyBoostEvent;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
 import mv.mossuh.moboosters.ENUMS.ApplicatorType;
-import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DebugType;
 import mv.mossuh.moboosters.MANAGERS.ActiveBoosterManager;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
@@ -14,7 +13,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.Map;
 import java.util.UUID;
 
 public class JobsRebornBoost implements Listener {
@@ -28,12 +26,7 @@ public class JobsRebornBoost implements Listener {
         CurrencyType currency = CurrencyType.MONEY;
         double obtained = event.get(currency);
 
-        Map<BoosterType, Double> boosts = ActiveBoosterManager.getTotalBoostCached(uuid, applicator, boosted);
-        double personal = boosts.getOrDefault(BoosterType.PERSONAL, 0.0);
-        double global = boosts.getOrDefault(BoosterType.GLOBAL, 0.0);
-        double superiorSkyblock2 = boosts.getOrDefault(BoosterType.SUPERIORSKYBLOCK2, 0.0);
-
-        double total = personal+global+superiorSkyblock2;
+        double total = ActiveBoosterManager.getTotalBoostCached(uuid, applicator, boosted);
         PlayerApplyBoostEvent playerApplyBoostEvent = new PlayerApplyBoostEvent(uuid, total, applicator, boosted);
         Bukkit.getPluginManager().callEvent(playerApplyBoostEvent);
 
@@ -59,12 +52,7 @@ public class JobsRebornBoost implements Listener {
         CurrencyType currency = CurrencyType.EXP;
         double obtained = event.get(currency);
 
-        Map<BoosterType, Double> boosts = ActiveBoosterManager.getTotalBoostCached(uuid, applicator, boosted);
-        double personal = boosts.getOrDefault(BoosterType.PERSONAL, 0.0);
-        double global = boosts.getOrDefault(BoosterType.GLOBAL, 0.0);
-        double superiorSkyblock2 = boosts.getOrDefault(BoosterType.SUPERIORSKYBLOCK2, 0.0);
-
-        double total = personal+global+superiorSkyblock2;
+        double total = ActiveBoosterManager.getTotalBoostCached(uuid, applicator, boosted);
         PlayerApplyBoostEvent playerApplyBoostEvent = new PlayerApplyBoostEvent(uuid, total, applicator, boosted);
         Bukkit.getPluginManager().callEvent(playerApplyBoostEvent);
 

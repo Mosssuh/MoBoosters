@@ -1,5 +1,6 @@
 package mv.mossuh.moboosters.COMMANDS;
 
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -10,7 +11,6 @@ import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
@@ -33,7 +33,7 @@ public class SetBoosterCommands {
                         String identifier = strings[2];
                         DurationType durationType = DurationType.TEMP;
                         BoosterType boosterType = UtilMethods.getBoosterType(strings[3]);
-                        ApplicatorType applicatorType = UtilMethods.getApplicatorType(strings[4]);
+                        ApplicatorType applicatorType = ApplicatorType.convert(strings[4]);
                         String boosted = strings[5];
                         String boostAsString = strings[6];
                         String durationAsString = strings[7];
@@ -49,23 +49,9 @@ public class SetBoosterCommands {
                         double boost = Double.parseDouble(boostAsString);
                         long duration = Math.round(Double.parseDouble(durationAsString));
 
-                        //TemporaryBoost boosterBoost = new TemporaryBoost(boost, new BoosterDuration(duration));
                         BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                         Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
 
-                        //ActiveBooster oldBooster = BoostersAPI.getManager().getBooster(booster);
-                        //TemporaryBoost oldBoost = oldBooster.getBoosts().getTemporary();
-
-                        /*
-                        ActivateTemporaryBoosterEvent boosterEvent = new ActivateTemporaryBoosterEvent(booster, boosterBoost, oldBoost);
-                        Bukkit.getPluginManager().callEvent(boosterEvent);
-
-                        if (boosterEvent.isCancelled()) { return; }
-
-                        double newBoost = boosterEvent.getBoost().getBoost();
-                        long newDuration = boosterEvent.getBoost().getDuration().getDuration();
-
-                         */
                         ActiveBooster active = BoostersAPI.getManager().setTempBoost(booster, boost, duration);
                         if (!active.isValid()) { return; }
 
@@ -95,7 +81,7 @@ public class SetBoosterCommands {
                         String identifier = strings[2];
                         DurationType durationType = DurationType.PERM;
                         BoosterType boosterType = UtilMethods.getBoosterType(strings[3]);
-                        ApplicatorType applicatorType = UtilMethods.getApplicatorType(strings[4]);
+                        ApplicatorType applicatorType = ApplicatorType.convert(strings[4]);
                         String boosted = strings[5];
                         String boostAsString = strings[6];
 
@@ -108,21 +94,9 @@ public class SetBoosterCommands {
 
                         double boost = Double.parseDouble(boostAsString);
 
-                        //PermanentBoost boosterBoost = new PermanentBoost(boost);
                         BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                         Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
 
-                        //ActiveBooster oldBooster = BoostersAPI.getManager().getBooster(booster);
-                        //PermanentBoost oldBoost = oldBooster.getBoosts().getPermanent();
-
-                        /*
-                        ActivatePermanentBoosterEvent boosterEvent = new ActivatePermanentBoosterEvent(booster, boosterBoost, oldBoost);
-                        Bukkit.getPluginManager().callEvent(boosterEvent);
-
-                        if (boosterEvent.isCancelled()) { return; }
-
-                        double newBoost = boosterEvent.getBoost().getBoost();
-                        */
                         ActiveBooster active = BoostersAPI.getManager().setPermBoost(booster, boost);
 
                         if (!active.isValid()) { return; }

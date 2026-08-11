@@ -134,7 +134,7 @@ public class Configs {
 
                     String identifier = config.getString("Boosters." + code + ".identifier");
                     BoosterType boosterType = UtilMethods.getBoosterType(typeString);
-                    ApplicatorType applicatorType = UtilMethods.getApplicatorType(applicatorString);
+                    ApplicatorType applicatorType = ApplicatorType.convert(applicatorString);
 
                     String itemMaterial = config.getString("Boosters." + code + ".item-info.material");
                     Byte itemData = (byte) config.getLong("Boosters." + code + ".item-info.data");

@@ -1,10 +1,10 @@
 package mv.mossuh.moboosters.API.Events;
 
+import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 
 import java.util.UUID;
 
