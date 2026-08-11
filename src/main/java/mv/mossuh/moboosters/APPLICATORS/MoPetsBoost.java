@@ -70,7 +70,9 @@ public class MoPetsBoost implements Listener {
         if (eventBoost > 0) {
             UtilString.get(Config.PREFIX + " &c(" + applicator.name() + ")&8: &aApplying the &2x" + eventBoost + " &aboost to &2" + boosted)
                     .hex().sendMessageInConsole(DebugType.APPLICATORS);
-            event.addBoost(total);
+            double exp = event.getExp();
+            double boostedExp = exp * eventBoost;
+            event.addExp(boostedExp);
         }
     }
 }
