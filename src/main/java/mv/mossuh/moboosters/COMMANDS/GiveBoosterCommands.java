@@ -48,10 +48,10 @@ public class GiveBoosterCommands {
 
                         player.getInventory().addItem(itemStack);
 
-                        UtilString.get(Messages.GIVE_BOOSTER_ITEM_SENDER).hex().replaceString("%amount%", itemAmount).setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                                .setArgs(args).setPlaceholders(player).sendMessage(sender);
-                        UtilString.get(Messages.GIVE_BOOSTER_ITEM_RECEIVER).hex().replaceString("%amount%", itemAmount).setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                                .setArgs(args).setPlaceholders(player).sendMessage(player);
+                        UtilString.get(Messages.GIVE_BOOSTER_ITEM_SENDER).replaceString("%amount%", itemAmount).setVariables(player).setVariables(boosterItem)
+                                .setArgs(args).setPlaceholders(player).hex().sendMessage(sender);
+                        UtilString.get(Messages.GIVE_BOOSTER_ITEM_RECEIVER).replaceString("%amount%", itemAmount).setVariables(player).setVariables(boosterItem)
+                                .setArgs(args).setPlaceholders(player).hex().sendMessage(player);
                     } else {
                         UtilString.get(Config.PREFIX+" &cUse: /moboosters give <code> <amount> <player> <args...>").hex().sendMessage(sender);
                     }
@@ -83,11 +83,11 @@ public class GiveBoosterCommands {
                             NBTBooster.setArgs(itemStack, argsAsString);
                             player.getInventory().addItem(itemStack);
 
-                            UtilString.get(Messages.GIVE_BOOSTER_ITEM_RECEIVER).hex().replaceString("%amount%", itemAmount).setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                                    .setArgs(args).setPlaceholders(player).sendMessage(player);
+                            UtilString.get(Messages.GIVE_BOOSTER_ITEM_RECEIVER).replaceString("%amount%", itemAmount).setVariables(player).setVariables(boosterItem)
+                                    .setArgs(args).setPlaceholders(player).hex().sendMessage(player);
                         }
-                        UtilString.get(Messages.GIVE_ALL_BOOSTER_ITEM_SENDER).hex().replaceString("%code%", itemCode).replaceString("%amount%", itemAmount)
-                                .setArgs(args).sendMessage(sender);
+                        UtilString.get(Messages.GIVE_ALL_BOOSTER_ITEM_SENDER).replaceString("%code%", itemCode).replaceString("%amount%", itemAmount)
+                                .setArgs(args).hex().sendMessage(sender);
                     } else {
                         UtilString.get(Config.PREFIX+" &cUse: /moboosters giveall <code> <amount> <args...>").hex().sendMessage(sender);
                     }

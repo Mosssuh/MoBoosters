@@ -1,6 +1,7 @@
 package mv.mossuh.moboosters;
 
-import mv.mossuh.moboosters.APPLICATORS.MinecraftBoost;
+import mv.mossuh.moboosters.API.BoostersAPI;
+import mv.mossuh.moboosters.EVENTS.Applicators.MinecraftBoost;
 import mv.mossuh.moboosters.COMMANDS.Commands;
 import mv.mossuh.moboosters.COMMANDS.TabCompleter;
 import mv.mossuh.moboosters.CONFIGS.Config.Config;
@@ -9,8 +10,8 @@ import mv.mossuh.moboosters.CONFIGS.Messages;
 import mv.mossuh.moboosters.COOLDOWN.BoosterCooldown;
 import mv.mossuh.moboosters.DATA.BoosterDataManager;
 import mv.mossuh.moboosters.EVENTS.ClaimItemBooster;
-import mv.mossuh.moboosters.MODULES.ModulesLoader;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
+import mv.mossuh.moboosters.EVENTS.ManualBoosters.CentralBoosterListener;
 import mv.mossuh.moboosters.UTILITIES.PluginChecker;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 import org.bukkit.Bukkit;
@@ -29,6 +30,7 @@ public final class MoBoosters extends JavaPlugin {
 
     private static MoBoosters instance;
     private Configs configs;
+    private CentralBoosterListener centralBoosterListener;
 
     @Override
     public void onEnable() {
@@ -44,7 +46,8 @@ public final class MoBoosters extends JavaPlugin {
         Messages.load(this);
         Config.load(this);
         registerCommands();
-        registerEvents();
+        registerOthers();
+        registerApplicators();
 
         BoosterDataManager.registerDatabaseInMaps(BoosterType.PERSONAL);
         BoosterDataManager.registerDatabaseInMaps(BoosterType.GLOBAL);
@@ -53,8 +56,6 @@ public final class MoBoosters extends JavaPlugin {
         BoosterCooldown.initializeActiveBoosters(BoosterType.GLOBAL);
 
         startSaverTimer();
-
-        ModulesLoader.loadIslandBoosterModule(this);
 
         UtilString.get(Config.PREFIX+" &aHas been enabled. Created by &bMossuh&a.").hex().sendMessageInConsole();
         UtilString.get(Config.PREFIX+" &aVersion: " + version).hex().sendMessageInConsole();
@@ -71,14 +72,19 @@ public final class MoBoosters extends JavaPlugin {
         UtilString.get(Config.PREFIX+" &cVersion: " + version).hex().sendMessageInConsole();
     }
 
-    public void registerEvents() {
+    private void registerApplicators() {
+        BoostersAPI.registerApplicator(this, new MinecraftBoost());
+    }
+    private void registerOthers() {
+        CentralBoosterListener central = new CentralBoosterListener();
+        centralBoosterListener = central;
+        this.getServer().getPluginManager().registerEvents(central, this);
+
         this.getServer().getPluginManager().registerEvents(new PluginChecker(), this);
-
         this.getServer().getPluginManager().registerEvents(new ClaimItemBooster(), this);
-
-        this.getServer().getPluginManager().registerEvents(new MinecraftBoost(), this);
     }
 
+    public CentralBoosterListener getCentralBoosterListener() { return centralBoosterListener; }
     public Configs getConfigs() { return configs; }
     public static MoBoosters getInstance() { return instance; }
     private void registerCommands() {

@@ -95,11 +95,11 @@ public class ActivateBoosterCommands {
                             } else if (durationType.equals(DurationType.TEMP)) {
                                 messageReceiver = UtilMethods.getTempBoosterStartMessage(boosterType);
                             }
-                            UtilString.get(messageReceiver).setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                                    .setArgs(args).setPlaceholders(player).sendMessage(player);
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                                    .setArgs(args).setPlaceholders(player).hex().sendMessage(player);
                         }
 
-                        UtilString.get(Messages.ACTIVATE_BOOSTER_SENDER).setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem).hex().sendMessage(sender);
+                        UtilString.get(Messages.ACTIVATE_BOOSTER_SENDER).setVariables(player).setVariables(boosterItem).hex().sendMessage(sender);
                     } else {
                         UtilString.get(Config.PREFIX+" &cUse: /moboosters activate <code> <player> <actions (true/false)> <args...>").hex().sendMessage(sender);
                     }

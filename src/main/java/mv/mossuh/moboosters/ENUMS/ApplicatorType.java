@@ -11,7 +11,7 @@ public class ApplicatorType {
     public static final ApplicatorType MOARMORS = new ApplicatorType("MOARMORS");
     public static final ApplicatorType ESSENTIALSX = new ApplicatorType("ESSENTIALSX");
     public static final ApplicatorType JOBSREBORN = new ApplicatorType("JOBSREBORN");
-    public static final ApplicatorType EXCELLENTECONOMY = new ApplicatorType("EXCELLENTECONOMY");
+    public static final ApplicatorType PLAYERPOINTS = new ApplicatorType("PLAYERPOINTS");
     public static final ApplicatorType NONE = new ApplicatorType("NONE");
 
     private final String applicator;
@@ -25,6 +25,7 @@ public class ApplicatorType {
     }
 
     public static ApplicatorType convert(String applicator) {
+        if (applicator == null) return NONE;
         return new ApplicatorType(applicator);
     }
 

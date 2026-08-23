@@ -42,6 +42,9 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] strings) {
         if (strings.length > 0) {
             switch (strings[0].toLowerCase()) {
+                case "openmenu":
+                    MenusCommands.onCommand(sender, strings);
+                    break;
                 case "debug":
                     DebugCommands.onCommand(sender, strings);
                 case "give":
@@ -73,8 +76,7 @@ public class Commands implements CommandExecutor {
                     List<String> boosters = Messages.BOOSTERS;
                     if (boosters != null && !boosters.isEmpty()) {
                         for (String line : boosters) {
-                            UtilString.get(line).hex().setPlaceholders(sender).setDefaultNumberRandomVariable().setTimeFormatter()
-                                    .setChangeOutputPlaceholder().setMathPlaceholder().sendMessage(sender);
+                            UtilString.get(line).setPlaceholders(sender).setTimeFormatter().hex().sendMessage(sender);
                         }
                     }
                     break;
@@ -121,6 +123,8 @@ public class Commands implements CommandExecutor {
                 UtilString.get("&b/moboosters removeboost").hex().sendMessage(sender);
                 UtilString.get("&b/moboosters addtime").hex().sendMessage(sender);
                 UtilString.get("&b/moboosters removetime").hex().sendMessage(sender);
+                UtilString.get("&r").hex().sendMessage(sender);
+                UtilString.get("&b/moboosters openmenu").hex().sendMessage(sender);
                 UtilString.get("&r").hex().sendMessage(sender);
                 UtilString.get("&8---------------------------------------------------").hex().sendMessage(sender);
                 UtilString.get("&r").hex().sendMessage(sender);

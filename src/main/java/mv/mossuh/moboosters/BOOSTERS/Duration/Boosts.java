@@ -1,9 +1,9 @@
 package mv.mossuh.moboosters.BOOSTERS.Duration;
 
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.Boost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.InvalidBoost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.InvalidBoost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.PermanentBoost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 
 public class Boosts {

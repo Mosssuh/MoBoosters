@@ -151,15 +151,15 @@ public class RewardMethods {
                 if (boosterType.equals(BoosterType.PERSONAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.PERSONAL_BOOSTER_ADD_BOOST).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessage(player);
+                        UtilString.get(Messages.PERSONAL_BOOSTER_ADD_BOOST).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessage(player);
                     }
                     BoostersAPI.getManager().addBoost(durationType, new PersonalBooster(playerUUID, boosterIdentifier), boost);
                 } else if (boosterType.equals(BoosterType.GLOBAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.GLOBAL_BOOSTER_ADD_BOOST).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessageToOnlinePlayers();
+                        UtilString.get(Messages.GLOBAL_BOOSTER_ADD_BOOST).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessageToOnlinePlayers();
                     }
                     BoostersAPI.getManager().addBoost(durationType, new GlobalBooster(boosterIdentifier), boost);
                 } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
@@ -173,8 +173,8 @@ public class RewardMethods {
                     if (!cancelMessage) {
                         List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                         for (SuperiorPlayer sPlayer : islandPlayers) {
-                            UtilString.get(Messages.SUPERIORSKYBLOCK2_BOOSTER_ADD_BOOST).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).sendMessage(sPlayer.getUniqueId());
+                            UtilString.get(Messages.SUPERIORSKYBLOCK2_BOOSTER_ADD_BOOST).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).hex().sendMessage(sPlayer.getUniqueId());
                         }
                     }
 
@@ -211,15 +211,15 @@ public class RewardMethods {
                 if (boosterType.equals(BoosterType.PERSONAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.PERSONAL_BOOSTER_REMOVE_BOOST).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessage(player);
+                        UtilString.get(Messages.PERSONAL_BOOSTER_REMOVE_BOOST).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessage(player);
                     }
                     BoostersAPI.getManager().removeBoost(durationType, new PersonalBooster(playerUUID, boosterIdentifier), boost);
                 } else if (boosterType.equals(BoosterType.GLOBAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.GLOBAL_BOOSTER_REMOVE_BOOST).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessageToOnlinePlayers();
+                        UtilString.get(Messages.GLOBAL_BOOSTER_REMOVE_BOOST).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessageToOnlinePlayers();
                     }
                     BoostersAPI.getManager().removeBoost(durationType, new GlobalBooster(boosterIdentifier), boost);
                 } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
@@ -233,8 +233,8 @@ public class RewardMethods {
                     if (!cancelMessage) {
                         List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                         for (SuperiorPlayer sPlayer : islandPlayers) {
-                            UtilString.get(Messages.SUPERIORSKYBLOCK2_BOOSTER_REMOVE_BOOST).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).sendMessage(sPlayer.getUniqueId());
+                            UtilString.get(Messages.SUPERIORSKYBLOCK2_BOOSTER_REMOVE_BOOST).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).hex().sendMessage(sPlayer.getUniqueId());
                         }
                     }
 
@@ -269,15 +269,15 @@ public class RewardMethods {
                 if (boosterType.equals(BoosterType.PERSONAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.PERSONAL_TEMP_BOOSTER_ADD_TIME).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessage(player);
+                        UtilString.get(Messages.PERSONAL_TEMP_BOOSTER_ADD_TIME).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessage(player);
                     }
                     BoostersAPI.getManager().addTime(new PersonalBooster(playerUUID, boosterIdentifier), duration);
                 } else if (boosterType.equals(BoosterType.GLOBAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.GLOBAL_TEMP_BOOSTER_ADD_TIME).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessageToOnlinePlayers();
+                        UtilString.get(Messages.GLOBAL_TEMP_BOOSTER_ADD_TIME).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessageToOnlinePlayers();
                     }
                     BoostersAPI.getManager().addTime(new GlobalBooster(boosterIdentifier), duration);
                 } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
@@ -290,8 +290,8 @@ public class RewardMethods {
                     if (!cancelMessage) {
                         List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                         for (SuperiorPlayer sPlayer : islandPlayers) {
-                            UtilString.get(Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_ADD_TIME).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).sendMessage(sPlayer.getUniqueId());
+                            UtilString.get(Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_ADD_TIME).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).hex().sendMessage(sPlayer.getUniqueId());
                         }
                     }
                     BoostersAPI.getManager().addTime(new SuperiorSkyblock2Booster(islandUUID, boosterIdentifier), duration);
@@ -453,15 +453,15 @@ public class RewardMethods {
                 if (boosterType.equals(BoosterType.PERSONAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.PERSONAL_TEMP_BOOSTER_REMOVE_TIME).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
+                        UtilString.get(Messages.PERSONAL_TEMP_BOOSTER_REMOVE_TIME).hex().setVariables(player).setVariables(boosterIdentifier)
                                 .setVariables(variables).sendMessage(player);
                     }
                     BoostersAPI.getManager().removeTime(new PersonalBooster(playerUUID, boosterIdentifier), duration);
                 } else if (boosterType.equals(BoosterType.GLOBAL)) {
                     BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
                     if (!cancelMessage) {
-                        UtilString.get(Messages.GLOBAL_TEMP_BOOSTER_REMOVE_TIME).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                .setVariables(variables).sendMessageToOnlinePlayers();
+                        UtilString.get(Messages.GLOBAL_TEMP_BOOSTER_REMOVE_TIME).setVariables(player).setVariables(boosterIdentifier)
+                                .setVariables(variables).hex().sendMessageToOnlinePlayers();
                     }
                     BoostersAPI.getManager().addTime(new GlobalBooster(boosterIdentifier), duration);
                 } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
@@ -474,8 +474,8 @@ public class RewardMethods {
                     if (!cancelMessage) {
                         List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                         for (SuperiorPlayer sPlayer : islandPlayers) {
-                            UtilString.get(Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_REMOVE_TIME).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).sendMessage(sPlayer.getUniqueId());
+                            UtilString.get(Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_REMOVE_TIME).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).hex().sendMessage(sPlayer.getUniqueId());
                         }
                     }
                     BoostersAPI.getManager().removeTime(new SuperiorSkyblock2Booster(islandUUID, boosterIdentifier), duration);

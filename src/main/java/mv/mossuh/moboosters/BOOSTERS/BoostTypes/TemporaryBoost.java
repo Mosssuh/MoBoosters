@@ -1,6 +1,6 @@
 package mv.mossuh.moboosters.BOOSTERS.BoostTypes;
 
-import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.BoostDuration.BoosterDuration;
+import mv.mossuh.moboosters.BOOSTERS.Duration.BoosterDuration;
 import mv.mossuh.moboosters.ENUMS.DurationType;
 
 public class TemporaryBoost implements Boost {

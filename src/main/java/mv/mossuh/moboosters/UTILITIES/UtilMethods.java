@@ -49,8 +49,7 @@ public class UtilMethods {
     }
 
     public static double transformChance(UUID uuid, String chance) {
-        chance = UtilString.get(chance).setDefaultNumberRandomVariable().setChangeOutputPlaceholder().setMathPlaceholder()
-                .setTimeFormatter().setPlaceholders(uuid).apply();
+        chance = UtilString.get(chance).setTimeFormatter().setPlaceholders(uuid).apply();
         double chanceFormat = 100 * 100;
         if (UtilString.get(chance).isNumeric()) {
             chanceFormat = Double.parseDouble(chance) * 100;
@@ -237,41 +236,6 @@ public class UtilMethods {
         }
     }
 
-
-
-    public static Island getIslandByUUID(UUID islandUUID) {
-        return SuperiorSkyblockAPI.getIslandByUUID(islandUUID);
-    }
-
-    public static UUID getIslandUUIDByName(String islandName) {
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            Island island = SuperiorSkyblockAPI.getIsland(islandName);
-            return island.getUniqueId();
-        }
-        return null;
-    }
-
-    public static UUID getIslandUUIDByPlayerUUID(UUID uuid) {
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(uuid);
-            if (superiorPlayer.hasIsland()) {
-                return superiorPlayer.getIsland().getUniqueId();
-            }
-        }
-        return null;
-    }
-
-
-    public static UUID getIslandUUID(Player player) {
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-            if (superiorPlayer.hasIsland()) {
-                return superiorPlayer.getIsland().getUniqueId();
-            }
-        }
-        return null;
-    }
-
     public static Booster getBooster(BoosterIdentifier boosterIdentifier, Player player) {
         Booster booster = new InvalidBooster();
         BoosterType boosterType = boosterIdentifier.getBoosterType();
@@ -403,23 +367,68 @@ public class UtilMethods {
     public static void sendMessageToReceiver(String messageReceiver, BoosterType boosterType, Player player, List<VariableArg> variables, BoosterItem boosterItem, boolean cancelledMessage) {
         if (!cancelledMessage) {
             if (boosterType.equals(BoosterType.PERSONAL)) {
-                UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                        .setVariables(variables).setPlaceholders(player).sendMessage(player);
+                UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                        .setVariables(variables).setPlaceholders(player).hex().sendMessage(player);
             } else if (boosterType.equals(BoosterType.GLOBAL)) {
-                UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                        .setVariables(variables).setPlaceholders(player).sendMessageToOnlinePlayers();
+                UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                        .setVariables(variables).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
             } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
                 SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
                 if (superiorPlayer.hasIsland()) {
                     List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                     for (SuperiorPlayer sPlayer : islandPlayers) {
                         if (sPlayer.isOnline()) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                                    .setVariables(variables).setPlaceholders(player).sendMessage(sPlayer.getUniqueId());
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                                    .setVariables(variables).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
                         }
                     }
                 }
             }
         }
+    }
+
+
+    public static Set<UUID> getIslandMembers(UUID islandUUID) {
+        Set<UUID> uuids = new HashSet<>();
+        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
+            Island island = SuperiorSkyblockAPI.getIslandByUUID(islandUUID);
+            if (island != null) {
+                island.getIslandMembers(true).forEach(sp -> uuids.add(sp.getUniqueId()));
+            }
+        }
+        return uuids;
+    }
+
+    public static Island getIslandByUUID(UUID islandUUID) {
+        return SuperiorSkyblockAPI.getIslandByUUID(islandUUID);
+    }
+
+    public static UUID getIslandUUIDByName(String islandName) {
+        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
+            Island island = SuperiorSkyblockAPI.getIsland(islandName);
+            return island.getUniqueId();
+        }
+        return null;
+    }
+
+    public static UUID getIslandUUIDByPlayerUUID(UUID uuid) {
+        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(uuid);
+            if (superiorPlayer.hasIsland()) {
+                return superiorPlayer.getIsland().getUniqueId();
+            }
+        }
+        return null;
+    }
+
+
+    public static UUID getIslandUUID(Player player) {
+        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
+            if (superiorPlayer.hasIsland()) {
+                return superiorPlayer.getIsland().getUniqueId();
+            }
+        }
+        return null;
     }
 }

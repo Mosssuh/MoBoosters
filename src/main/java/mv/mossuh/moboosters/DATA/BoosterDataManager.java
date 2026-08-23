@@ -1,10 +1,10 @@
 package mv.mossuh.moboosters.DATA;
 
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.GlobalBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.PersonalBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.Boost;
 import mv.mossuh.moboosters.DATA.Datas.BoosterGlobalData;
 import mv.mossuh.moboosters.DATA.Datas.BoosterPersonalData;
 import mv.mossuh.moboosters.DATA.Datas.BoosterSuperiorSkyblock2Data;

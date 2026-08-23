@@ -1,17 +1,16 @@
 package mv.mossuh.moboosters.DATA.Datas;
 
 import mv.mossuh.moboosters.BOOSTERS.ActiveBooster;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.PermanentBoost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.moboosters.MANAGERS.ActiveBoosterManager;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.GlobalBooster;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.Boost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoosterDuration;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
-import mv.mossuh.moboosters.UTILITIES.UtilMethods;
 import mv.mossuh.moboosters.CONFIGS.Configs;
 import mv.mossuh.moboosters.MoBoosters;
 
