@@ -1,13 +1,13 @@
 package mv.mossuh.moboosters.MANAGERS;
 
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.PermanentBoost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 import mv.mossuh.moboosters.BOOSTERS.ActiveBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.Boost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.BOOSTERS.Duration.BoosterDuration;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfigs;
@@ -26,6 +26,15 @@ import java.util.List;
 import java.util.UUID;
 
 public class BoosterManager {
+
+    private ActiveBooster setBoost(DurationType durationType, Booster booster, Double boost, Long duration) {
+        if (durationType.equals(DurationType.PERM)) {
+            return setPermBoost(booster, boost);
+        } else if (durationType.equals(DurationType.TEMP)) {
+            return setTempBoost(booster, boost, duration);
+        }
+        return new ActiveBooster();
+    }
 
     public ActiveBooster setTempBoost(Booster booster, Double boost, Long duration) {
         // DurationType durationType = DurationType.TEMP;

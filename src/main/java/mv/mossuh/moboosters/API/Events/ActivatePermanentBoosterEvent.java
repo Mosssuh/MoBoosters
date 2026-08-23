@@ -1,12 +1,12 @@
 package mv.mossuh.moboosters.API.Events;
 
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.PermanentBoost;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.InvalidBooster;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
 
 public class ActivatePermanentBoosterEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

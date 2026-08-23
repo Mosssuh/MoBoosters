@@ -77,16 +77,16 @@ public class BoosterItems {
         byte data = info.getMaterialData();
 
         String code = boosterConfig.getCode();
-        String identifier = UtilString.get(boosterIdentifier.getIdentifier()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
-        String boost = UtilString.get(boosterConfig.getBoost()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
-        String duration = UtilString.get(boosterConfig.getDuration()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
+        String identifier = UtilString.get(boosterIdentifier.getIdentifier()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
+        String boost = UtilString.get(boosterConfig.getBoost()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
+        String duration = UtilString.get(boosterConfig.getDuration()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
         BoosterType boosterType = boosterIdentifier.getBoosterType();
         ApplicatorType applicatorType = boosterIdentifier.getApplicatorType();
-        String boosted = UtilString.get(boosterIdentifier.getBoosted()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
+        String boosted = UtilString.get(boosterIdentifier.getBoosted()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
 
         BoosterIdentifier newBoosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
         BoosterConfig newBoosterConfig = new BoosterConfig(boosterConfig.getCode(), boost, duration, newBoosterIdentifier, boosterConfig.getInfo(), boosterConfig.getActions());
@@ -142,15 +142,15 @@ public class BoosterItems {
         List<String> flags = info.getFlags();
 
         if (info.hasName()) {
-            String name = UtilString.get(info.getName()).hex().setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable().setArgs(args).setDefaultBoosterVariables(newBoosterConfig).setPlaceholders(uuid)
-                    .setChangeOutputPlaceholder().setMathPlaceholder().setTimeFormatter().apply();
+            String name = UtilString.get(info.getName()).hex().setVariables(uuid).setArgs(args).setVariables(newBoosterConfig).setPlaceholders(uuid)
+                    .setTimeFormatter().apply();
             itemMeta.setDisplayName(name);
         }
         if (info.hasLore()) {
             List<String> lore = new ArrayList<>();
             for (String line : info.getLore()) {
-                lore.add(UtilString.get(line).hex().setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable().setArgs(args).setDefaultBoosterVariables(newBoosterConfig).setPlaceholders(uuid).setChangeOutputPlaceholder()
-                        .setMathPlaceholder().setTimeFormatter().apply());
+                lore.add(UtilString.get(line).hex().setVariables(uuid).setArgs(args).setVariables(newBoosterConfig).setPlaceholders(uuid)
+                        .setTimeFormatter().apply());
             }
             itemMeta.setLore(lore);
         }
@@ -209,16 +209,16 @@ public class BoosterItems {
         BoosterInfo info = boosterConfig.getInfo();
         String material = info.getMaterial();
         String code = boosterConfig.getCode();
-        String identifier = UtilString.get(boosterIdentifier.getIdentifier()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
-        String boost = UtilString.get(boosterConfig.getBoost()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
-        String duration = UtilString.get(boosterConfig.getDuration()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
+        String identifier = UtilString.get(boosterIdentifier.getIdentifier()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
+        String boost = UtilString.get(boosterConfig.getBoost()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
+        String duration = UtilString.get(boosterConfig.getDuration()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
         BoosterType boosterType = boosterIdentifier.getBoosterType();
         ApplicatorType applicatorType = boosterIdentifier.getApplicatorType();
-        String boosted = UtilString.get(boosterIdentifier.getBoosted()).setArgs(args).setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable()
-                .setPlaceholders(uuid).setChangeOutputPlaceholder().setMathPlaceholder().apply();
+        String boosted = UtilString.get(boosterIdentifier.getBoosted()).setArgs(args).setVariables(uuid)
+                .setPlaceholders(uuid).apply();
 
         BoosterIdentifier newBoosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
         BoosterConfig newBoosterConfig = new BoosterConfig(boosterConfig.getCode(), boost, duration, newBoosterIdentifier, boosterConfig.getInfo(), boosterConfig.getActions());
@@ -247,15 +247,15 @@ public class BoosterItems {
         List<String> flags = info.getFlags();
 
         if (info.hasName()) {
-            String name = UtilString.get(info.getName()).hex().setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable().setArgs(args).setDefaultBoosterVariables(newBoosterConfig).setPlaceholders(uuid)
-                    .setChangeOutputPlaceholder().setMathPlaceholder().setTimeFormatter().apply();
+            String name = UtilString.get(info.getName()).setVariables(uuid).setArgs(args).setVariables(newBoosterConfig).setPlaceholders(uuid)
+                    .setTimeFormatter().hex().apply();
             itemMeta.setDisplayName(name);
         }
         if (info.hasLore()) {
             List<String> lore = new ArrayList<>();
             for (String line : info.getLore()) {
-                lore.add(UtilString.get(line).hex().setDefaultPlayerVariables(uuid).setDefaultNumberRandomVariable().setArgs(args).setDefaultBoosterVariables(newBoosterConfig).setPlaceholders(uuid).setChangeOutputPlaceholder()
-                        .setMathPlaceholder().setTimeFormatter().apply());
+                lore.add(UtilString.get(line).setVariables(uuid).setArgs(args).setVariables(newBoosterConfig).setPlaceholders(uuid)
+                        .setTimeFormatter().hex().apply());
             }
             itemMeta.setLore(lore);
         }

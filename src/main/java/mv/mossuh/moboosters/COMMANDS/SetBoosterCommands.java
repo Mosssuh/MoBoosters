@@ -1,5 +1,7 @@
 package mv.mossuh.moboosters.COMMANDS;
 
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.PermanentBoost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.ENUMS.ApplicatorType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.Bukkit;
@@ -8,8 +10,6 @@ import org.bukkit.entity.Player;
 import mv.mossuh.moboosters.API.BoostersAPI;
 import mv.mossuh.moboosters.BOOSTERS.ActiveBooster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.PermanentBoost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.ENUMS.BoosterType;
 import mv.mossuh.moboosters.ENUMS.DurationType;
@@ -71,9 +71,11 @@ public class SetBoosterCommands {
                         variables.add(new VariableArg("%duration_formatted%", UtilMethods.showCooldownFormatted(newDuration, System.currentTimeMillis())));
 
                         if (identifier.equalsIgnoreCase("default")) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender).sendMessage(player);
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender)
+                                   .hex().sendMessage(player);
                         }
-                        UtilString.get(messageSender).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender).sendMessage(sender);
+                        UtilString.get(messageSender).setVariables(player).setVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender)
+                                .hex().sendMessage(sender);
                     } else if (strings.length == 7) {
                         // Permanent Booster
                         // /moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost>
@@ -114,9 +116,11 @@ public class SetBoosterCommands {
                         variables.add(new VariableArg("%boost_with_base%", boostBase));
 
                         if (identifier.equalsIgnoreCase("default")) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender).sendMessage(player);
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender)
+                                    .hex().sendMessage(player);
                         }
-                        UtilString.get(messageSender).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender).sendMessage(sender);
+                        UtilString.get(messageSender).setVariables(player).setVariables(boosterIdentifier).setVariables(variables).setPlaceholders(sender)
+                                .hex().sendMessage(sender);
                     } else {
                         UtilString.get(Config.PREFIX+" &cUse: /moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost> <duration in seconds>").hex().sendMessage(sender);
                         UtilString.get(Config.PREFIX+" &cUse: /moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost>").hex().sendMessage(sender);

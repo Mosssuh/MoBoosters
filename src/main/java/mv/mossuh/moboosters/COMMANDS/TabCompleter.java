@@ -16,7 +16,7 @@ public class TabCompleter implements org.bukkit.command.TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return Arrays.asList("give", "giveall", "activate", "setbooster", "removebooster", "addtime", "removetime", "addboost", "removeboost");
+            return Arrays.asList("give", "giveall", "activate", "setbooster", "removebooster", "addtime", "removetime", "addboost", "removeboost", "openmenu");
         } else if (args.length > 1) {
             String arg = args[0].toLowerCase();
             if (args.length == 2) {
@@ -33,6 +33,8 @@ public class TabCompleter implements org.bukkit.command.TabCompleter {
                         return getPlayers();
                     case "removebooster":
                         return getIdentifiers();
+                    case "openmenu":
+                        return Collections.singletonList("activeboosters");
                 }
             } else if (args.length == 3) {
                 switch (arg) {

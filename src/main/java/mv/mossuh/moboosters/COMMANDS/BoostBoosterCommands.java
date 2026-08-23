@@ -78,19 +78,19 @@ public class BoostBoosterCommands {
 
                         String messageReceiver = UtilMethods.getBoosterAddBoostMessage(boosterType);
                         if (boosterType.equals(BoosterType.PERSONAL)) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).setPlaceholders(player).sendMessage(player);
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).setPlaceholders(player).hex().sendMessage(player);
                         } else if (boosterType.equals(BoosterType.GLOBAL)) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).setPlaceholders(player).sendMessageToOnlinePlayers();
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
                         } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
                             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
                             if (superiorPlayer.hasIsland()) {
                                 List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                                 for (SuperiorPlayer sPlayer : islandPlayers) {
                                     if (sPlayer.isOnline()) {
-                                        UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                                .setVariables(variables).setPlaceholders(player).sendMessage(sPlayer.getUniqueId());
+                                        UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                                .setVariables(variables).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
                                     }
                                 }
                             }
@@ -147,19 +147,19 @@ public class BoostBoosterCommands {
 
                         String messageReceiver = UtilMethods.getBoosterRemoveBoostMessage(boosterType);
                         if (boosterType.equals(BoosterType.PERSONAL)) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).setPlaceholders(player).sendMessage(player);
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).setPlaceholders(player).hex().sendMessage(player);
                         } else if (boosterType.equals(BoosterType.GLOBAL)) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                    .setVariables(variables).setPlaceholders(player).sendMessageToOnlinePlayers();
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                    .setVariables(variables).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
                         } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
                             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
                             if (superiorPlayer.hasIsland()) {
                                 List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                                 for (SuperiorPlayer sPlayer : islandPlayers) {
                                     if (sPlayer.isOnline()) {
-                                        UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterIdentifier)
-                                                .setVariables(variables).setPlaceholders(player).sendMessage(sPlayer.getUniqueId());
+                                        UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                                .setVariables(variables).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
                                     }
                                 }
                             }

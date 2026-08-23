@@ -108,10 +108,7 @@ public class Rewards {
                     RewardReceiver rewardReceiver = selected.getRewardReceiver();
                     LivingEntity entityReceiver = getEntityReceiver(player, variables, rewardReceiver);
 
-                    String reward = UtilString.get(selected.getReward())
-                            .hex().setDefaultNumberRandomVariable()
-                            .setVariables(variables).setPlaceholders(entityReceiver)
-                            .setChangeOutputPlaceholder().setMathPlaceholder().setTimeFormatter().apply();
+                    String reward = UtilString.get(selected.getReward()).setVariables(variables).setPlaceholders(entityReceiver).setTimeFormatter().hex().apply();
 
                     if (reward == null) continue;
 
@@ -192,9 +189,7 @@ public class Rewards {
     private LivingEntity getEntityReceiver(Player executor, List<VariableArg> variables, RewardReceiver rewardReceiver) {
         if (rewardReceiver.getRewardReceiverType() == RewardReceiverType.PLACEHOLDER && rewardReceiver.hasRewardReceiver()) {
             String name = UtilString.get(rewardReceiver.getRewardReceiver())
-                    .setDefaultNumberRandomVariable().setVariables(variables)
-                    .setPlaceholders(executor).setChangeOutputPlaceholder()
-                    .setMathPlaceholder().setTimeFormatter().apply();
+                    .setVariables(variables).setPlaceholders(executor).setTimeFormatter().apply();
 
             Player p = Bukkit.getPlayer(name);
             if (p != null && p.isOnline()) {

@@ -1,11 +1,11 @@
 package mv.mossuh.moboosters.API.Events;
 
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
 import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.InvalidBooster;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 
 public class EndsTemporaryBoosterEvent extends Event {
     private static final HandlerList handlers = new HandlerList();

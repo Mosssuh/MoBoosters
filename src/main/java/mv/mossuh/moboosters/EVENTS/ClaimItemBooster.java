@@ -62,7 +62,7 @@ public class ClaimItemBooster implements Listener {
         DurationType durationType = boosterItem.getDurationType();
         BoosterIdentifier boosterIdentifier = boosterItem.getIdentifier();
         double boost = Double.parseDouble(boosterItem.getBoost());
-        long duration = Math.round(Double.parseDouble(boosterItem.getDuration()));
+        long duration = durationType.equals(DurationType.TEMP) ? Math.round(Double.parseDouble(boosterItem.getDuration())) : 0;
 
         if (!Config.IDENTIFIERS.hasIdentifier(boosterIdentifier.getIdentifier())) {
             UtilString.get(Messages.INVALID_IDENTIFIER).hex().sendMessage(player);
@@ -161,16 +161,23 @@ public class ClaimItemBooster implements Listener {
                     appliedBooster = false;
                 }
             } else {
-                if (isAccumulative) {
-                    String message = UtilMethods.getBoosterAddBoostMessage(boosterType);
-                    sendMessageToReceiver(message, boosterType, player, args, boosterItem, cancelledMessage);
-                    BoostersAPI.getManager().addBoost(durationType, booster, boost);
-                    appliedWay = "&aAdded Boost";
-                } else {
+                if (!activeBooster.isPermActive()) {
                     String message = UtilMethods.getBoosterSetBoostMessage(boosterType);
                     sendMessageToReceiver(message, boosterType, player, args, boosterItem, cancelledMessage);
                     BoostersAPI.getManager().setPermBoost(booster, boost);
                     appliedWay = "&aActivated";
+                } else {
+                    if (isAccumulative) {
+                        String message = UtilMethods.getBoosterAddBoostMessage(boosterType);
+                        sendMessageToReceiver(message, boosterType, player, args, boosterItem, cancelledMessage);
+                        BoostersAPI.getManager().addBoost(durationType, booster, boost);
+                        appliedWay = "&aAdded Boost";
+                    } else {
+                        String message = UtilMethods.getBoosterSetBoostMessage(boosterType);
+                        sendMessageToReceiver(message, boosterType, player, args, boosterItem, cancelledMessage);
+                        BoostersAPI.getManager().setPermBoost(booster, boost);
+                        appliedWay = "&aActivated";
+                    }
                 }
             }
         }
@@ -215,19 +222,19 @@ public class ClaimItemBooster implements Listener {
     private void sendMessageToReceiver(String messageReceiver, BoosterType boosterType, Player player, CommandArgs args, BoosterItem boosterItem, boolean cancelledMessage) {
         if (!cancelledMessage) {
             if (boosterType.equals(BoosterType.PERSONAL)) {
-                UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                        .setArgs(args).setPlaceholders(player).sendMessage(player);
+                UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                        .setArgs(args).setPlaceholders(player).hex().sendMessage(player);
             } else if (boosterType.equals(BoosterType.GLOBAL)) {
-                UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                        .setArgs(args).setPlaceholders(player).sendMessageToOnlinePlayers();
+                UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                        .setArgs(args).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
             } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
                 SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
                 if (superiorPlayer.hasIsland()) {
                     List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
                     for (SuperiorPlayer sPlayer : islandPlayers) {
                         if (sPlayer.isOnline()) {
-                            UtilString.get(messageReceiver).hex().setDefaultPlayerVariables(player).setDefaultBoosterVariables(boosterItem)
-                                    .setArgs(args).setPlaceholders(player).sendMessage(sPlayer.getUniqueId());
+                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                                    .setArgs(args).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
                         }
                     }
                 }

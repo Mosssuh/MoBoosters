@@ -1,5 +1,5 @@
 name: MoBoosters
-version: '0.0.1'
+version: '0.0.1-dev.1'
 main: mv.mossuh.moboosters.MoBoosters
 api-version: '1.13'
 

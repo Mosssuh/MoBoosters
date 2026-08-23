@@ -1,9 +1,9 @@
 package mv.mossuh.moboosters.UTILITIES;
 
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
+import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.entity.Player;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.Boost;
-import mv.mossuh.moboosters.BOOSTERS.Duration.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
 import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
@@ -26,18 +26,14 @@ public class DefaultVariables {
         List<VariableArg> variables = new ArrayList<>();
         if (boosterConfig.isBooster()) {
             String code = boosterConfig.getCode();
-            String boost = UtilString.get(boosterConfig.getBoost()).setDefaultNumberRandomVariable().setChangeOutputPlaceholder().setMathPlaceholder()
-                    .setTimeFormatter().setPlaceholders(uuid).apply();
+            String boost = UtilString.get(boosterConfig.getBoost()).setPlaceholders(uuid).setTimeFormatter().apply();
             String durationType = boosterConfig.getDurationType().name();
-            String duration = UtilString.get(boosterConfig.getDuration()).setDefaultNumberRandomVariable().setChangeOutputPlaceholder().setMathPlaceholder()
-                    .setTimeFormatter().setPlaceholders(uuid).apply();
+            String duration = UtilString.get(boosterConfig.getDuration()).setPlaceholders(uuid).setTimeFormatter().apply();
             BoosterIdentifier boosterIdentifier = boosterConfig.getIdentifier();
-            String identifier = UtilString.get(boosterIdentifier.getIdentifier()).setDefaultNumberRandomVariable().setChangeOutputPlaceholder().setMathPlaceholder()
-                    .setTimeFormatter().setPlaceholders(uuid).apply();
+            String identifier = UtilString.get(boosterIdentifier.getIdentifier()).setPlaceholders(uuid).setTimeFormatter().apply();
             String boosterType = boosterIdentifier.getBoosterType().name();
             String applicatorType = boosterIdentifier.getApplicatorType().name();
-            String boosted = UtilString.get(boosterIdentifier.getBoosted()).setDefaultNumberRandomVariable().setChangeOutputPlaceholder().setMathPlaceholder()
-                    .setTimeFormatter().setPlaceholders(uuid).apply();;
+            String boosted = UtilString.get(boosterIdentifier.getBoosted()).setPlaceholders(uuid).setTimeFormatter().apply();;
 
             variables.add(new VariableArg("%code%", code));
             variables.add(new VariableArg("%boost%", boost));
