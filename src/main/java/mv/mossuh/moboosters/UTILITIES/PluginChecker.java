@@ -1,21 +1,20 @@
 package mv.mossuh.moboosters.UTILITIES;
 
 import mv.mossuh.moboosters.API.BoostersAPI;
-import mv.mossuh.moboosters.EVENTS.Applicators.JobsRebornBoost;
-import mv.mossuh.moboosters.EVENTS.Applicators.MoArmorsBoost;
-import mv.mossuh.moboosters.EVENTS.Applicators.MoPetsBoost;
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
-import mv.mossuh.moboosters.EVENTS.Applicators.PlayerPointsBoost;
+import mv.mossuh.moboosters.EVENT.Applicators.JobsRebornBoost;
+import mv.mossuh.moboosters.EVENT.Applicators.MoArmorsBoost;
+import mv.mossuh.moboosters.EVENT.Applicators.MoPetsBoost;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.EVENT.Applicators.PlayerPointsBoost;
 import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.EVENTS.PluginCheckerEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import mv.mossuh.moboosters.EVENTS.ManualBoosters.IslandBoosterListener;
-import mv.mossuh.moboosters.DATA.BoosterDataManager;
-import mv.mossuh.moboosters.EVENTS.IslandDisband;
-import mv.mossuh.moboosters.COOLDOWN.BoosterCooldown;
-import mv.mossuh.moboosters.ENUMS.BoosterType;
-import mv.mossuh.moboosters.PAPI;
+import mv.mossuh.moboosters.EVENT.Hooks.IslandBoosterListener;
+import mv.mossuh.moboosters.MANAGER.BoosterDataManager;
+import mv.mossuh.moboosters.EVENT.IslandDisband;
+import mv.mossuh.moboosters.UTILITIES.Cooldown.BoosterCooldown;
+import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
 import mv.mossuh.moboosters.MoBoosters;
 
 public class PluginChecker implements Listener {

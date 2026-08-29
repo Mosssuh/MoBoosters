@@ -2,7 +2,7 @@ package mv.mossuh.moboosters.UTILITIES;
 
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
+import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -12,15 +12,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mv.mossuh.moboosters.API.BoostersAPI;
-import mv.mossuh.moboosters.BOOSTERS.ActiveBooster;
-import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
-import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.GlobalBooster;
-import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.PersonalBooster;
-import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.SuperiorSkyblock2Booster;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.ENUMS.BoosterType;
-import mv.mossuh.moboosters.ENUMS.DurationType;
-import mv.mossuh.moboosters.CONFIGS.Messages;
+import mv.mossuh.moboosters.MODEL.ActiveBooster.ActiveBooster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.GlobalBooster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.PersonalBooster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
+import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
+import mv.mossuh.moboosters.UTILITIES.Enums.DurationType;
+import mv.mossuh.moboosters.DATA.Config.Messages;
 
 import java.util.*;
 

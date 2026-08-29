@@ -8,7 +8,7 @@ import mv.mossuh.mocore.ACTIONS.RewardUtil.MoRewards;
 import mv.mossuh.mocore.ENUMS.RequirementType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.entity.Player;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
 import mv.mossuh.moboosters.UTILITIES.DefaultVariables;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 

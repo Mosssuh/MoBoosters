@@ -1,6 +1,6 @@
 package mv.mossuh.moboosters.API.Events;
 
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
+import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

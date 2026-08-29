@@ -1,8 +1,11 @@
 package mv.mossuh.moboosters.API;
 
-import mv.mossuh.moboosters.MANAGERS.BoosterManager;
-import mv.mossuh.moboosters.MANAGERS.ModulesManager;
-import mv.mossuh.moboosters.MODULES.ApplicatorModule;
+import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
+import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MANAGER.BoosterManager;
+import mv.mossuh.moboosters.MANAGER.HooksManager;
+import mv.mossuh.moboosters.HOOK.ApplicatorHook;
+import mv.mossuh.moboosters.HOOK.StateApplicatorHook;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BoostersAPI {
@@ -11,9 +14,20 @@ public class BoostersAPI {
         return boosterManager;
     }
 
-    public static void registerApplicator(JavaPlugin plugin, ApplicatorModule... module) {
-        for (ApplicatorModule m : module) {
-            ModulesManager.registerApplicator(plugin, m);
+    public static void registerApplicator(JavaPlugin plugin, ApplicatorHook... module) {
+        for (ApplicatorHook m : module) {
+            HooksManager.registerApplicator(plugin, m);
         }
     }
+
+    public static boolean isStateApplicator(ApplicatorType applicator, String boosted) {
+        StateApplicatorHook hook = HooksManager.getStateApplicator(applicator, boosted);
+        return hook != null;
+    }
+    public static boolean isEventApplicator(ApplicatorType applicator) {
+        EventApplicatorHook hook = HooksManager.getEventApplicator(applicator);
+        return hook != null;
+    }
+
+
 }

@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
 
 public class ClaimItemBoosterEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

@@ -1,24 +1,28 @@
 package mv.mossuh.moboosters;
 
 import mv.mossuh.moboosters.API.BoostersAPI;
-import mv.mossuh.moboosters.EVENTS.Applicators.MinecraftBoost;
+import mv.mossuh.moboosters.EVENT.Applicators.MinecraftBoost;
 import mv.mossuh.moboosters.COMMANDS.Commands;
 import mv.mossuh.moboosters.COMMANDS.TabCompleter;
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
-import mv.mossuh.moboosters.CONFIGS.Configs;
-import mv.mossuh.moboosters.CONFIGS.Messages;
-import mv.mossuh.moboosters.COOLDOWN.BoosterCooldown;
-import mv.mossuh.moboosters.DATA.BoosterDataManager;
-import mv.mossuh.moboosters.EVENTS.ClaimItemBooster;
-import mv.mossuh.moboosters.ENUMS.BoosterType;
-import mv.mossuh.moboosters.EVENTS.ManualBoosters.CentralBoosterListener;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.MANAGER.ConfigManager;
+import mv.mossuh.moboosters.DATA.Config.Messages;
+import mv.mossuh.moboosters.UTILITIES.Cooldown.BoosterCooldown;
+import mv.mossuh.moboosters.MANAGER.BoosterDataManager;
+import mv.mossuh.moboosters.EVENT.ClaimItemBooster;
+import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
+import mv.mossuh.moboosters.EVENT.Hooks.CentralBoosterListener;
 import mv.mossuh.moboosters.UTILITIES.PluginChecker;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
+import mv.mossuh.mocore.DATABASE.ConnectionMySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +33,9 @@ public final class MoBoosters extends JavaPlugin {
     public String version = pdffile.getVersion();
 
     private static MoBoosters instance;
-    private Configs configs;
+    private ConfigManager configManager;
     private CentralBoosterListener centralBoosterListener;
+    private ConnectionMySQL connection;
 
     @Override
     public void onEnable() {
@@ -41,14 +46,21 @@ public final class MoBoosters extends JavaPlugin {
         }
 
         instance = this;
-        configs = new Configs(this);
-        configs.configure();
+        configManager = new ConfigManager(this);
+        configManager.configure();
         Messages.load(this);
         Config.load(this);
+
+        if (Config.MYSQL_ENABLED) {
+            this.connection = new ConnectionMySQL(Config.MYSQL_HOST, Config.MYSQL_PORT, Config.MYSQL_DATABASE, Config.MYSQL_USER, Config.MYSQL_PASSWORD);
+        }
+
         registerCommands();
         registerOthers();
         registerApplicators();
 
+
+        BoosterDataManager.initialize();
         BoosterDataManager.registerDatabaseInMaps(BoosterType.PERSONAL);
         BoosterDataManager.registerDatabaseInMaps(BoosterType.GLOBAL);
 
@@ -72,6 +84,20 @@ public final class MoBoosters extends JavaPlugin {
         UtilString.get(Config.PREFIX+" &cVersion: " + version).hex().sendMessageInConsole();
     }
 
+    public Connection getConnection() {
+        if (Config.MYSQL_ENABLED) {
+            return connection.getConnection();
+        } else {
+            try {
+                return DriverManager.getConnection("jdbc:sqlite:" + MoBoosters.getInstance().getConfigManager().getMoBoostersData().getFile().getAbsolutePath());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
+
     private void registerApplicators() {
         BoostersAPI.registerApplicator(this, new MinecraftBoost());
     }
@@ -85,7 +111,7 @@ public final class MoBoosters extends JavaPlugin {
     }
 
     public CentralBoosterListener getCentralBoosterListener() { return centralBoosterListener; }
-    public Configs getConfigs() { return configs; }
+    public ConfigManager getConfigManager() { return configManager; }
     public static MoBoosters getInstance() { return instance; }
     private void registerCommands() {
         Objects.requireNonNull(this.getCommand("moboosters")).setExecutor(new Commands());

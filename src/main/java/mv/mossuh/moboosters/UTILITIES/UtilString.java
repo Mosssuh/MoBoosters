@@ -1,30 +1,20 @@
 package mv.mossuh.moboosters.UTILITIES;
 
-import me.clip.placeholderapi.PlaceholderAPI;
-import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
-import mv.mossuh.moboosters.DEBUG.Debugs;
-import mv.mossuh.moboosters.ENUMS.DebugType;
-import mv.mossuh.mocore.UTILITIES.ARGS.CommandArgs.CommandArgs;
+import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.Boost;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
+import mv.mossuh.moboosters.MODEL.Booster.Config.BoosterConfig;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.MANAGER.DebugManager;
+import mv.mossuh.moboosters.UTILITIES.Enums.DebugType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
-import mv.mossuh.mocore.UTILITIES.UsefulMethods;
 import mv.mossuh.mocore.UTILITIES.UsefulString;
-import mv.mossuh.mocore.VERSION.ServerVersion;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UtilString extends UsefulString<UtilString> {
     protected UtilString(String string) {
@@ -106,7 +96,7 @@ public class UtilString extends UsefulString<UtilString> {
 
     public void sendMessageInConsole(DebugType debugType) {
         if (isString()) {
-            if (Debugs.isActive(debugType)) {
+            if (DebugManager.isActive(debugType)) {
                 Bukkit.getConsoleSender().sendMessage(apply());
             }
         }

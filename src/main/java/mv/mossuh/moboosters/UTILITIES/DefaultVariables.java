@@ -1,13 +1,13 @@
 package mv.mossuh.moboosters.UTILITIES;
 
-import mv.mossuh.moboosters.BOOSTERS.BoostTypes.Boost;
-import mv.mossuh.moboosters.BOOSTERS.BoostTypes.TemporaryBoost;
+import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.Boost;
+import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.TemporaryBoost;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.entity.Player;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
-import mv.mossuh.moboosters.ENUMS.DurationType;
+import mv.mossuh.moboosters.MODEL.Booster.Config.BoosterConfig;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
+import mv.mossuh.moboosters.UTILITIES.Enums.DurationType;
 
 import java.util.ArrayList;
 import java.util.List;

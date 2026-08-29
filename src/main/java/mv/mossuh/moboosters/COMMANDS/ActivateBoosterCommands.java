@@ -1,6 +1,6 @@
 package mv.mossuh.moboosters.COMMANDS;
 
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
 import mv.mossuh.mocore.UTILITIES.ARGS.CommandArgs.CommandArgs;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -9,17 +9,17 @@ import mv.mossuh.moboosters.API.BoostersAPI;
 import mv.mossuh.moboosters.ACTIONS.ActionResult;
 import mv.mossuh.moboosters.ACTIONS.Requirements;
 import mv.mossuh.moboosters.ACTIONS.Rewards;
-import mv.mossuh.moboosters.BOOSTERS.BoosterTypes.Booster;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfigs;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterIdentifier;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItems;
-import mv.mossuh.moboosters.ENUMS.BoosterType;
-import mv.mossuh.moboosters.ENUMS.DurationType;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
+import mv.mossuh.moboosters.MODEL.Booster.Config.BoosterConfig;
+import mv.mossuh.moboosters.DATA.Config.Booster.BoosterConfigs;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
+import mv.mossuh.moboosters.MANAGER.BoosterCreator;
+import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
+import mv.mossuh.moboosters.UTILITIES.Enums.DurationType;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
-import mv.mossuh.moboosters.CONFIGS.Messages;
+import mv.mossuh.moboosters.DATA.Config.Messages;
 
 import java.util.UUID;
 
@@ -48,7 +48,7 @@ public class ActivateBoosterCommands {
                         CommandArgs args = new CommandArgs(strings, 4);
 
                         BoosterConfig boosterConfig = BoosterConfigs.getBoosterConfig(boosterCode);
-                        BoosterItem boosterItem = BoosterItems.create(boosterConfig, uuid, args, 1);
+                        BoosterItem boosterItem = BoosterCreator.create(boosterConfig, uuid, args, 1);
 
                         DurationType durationType = boosterConfig.getDurationType();
                         BoosterIdentifier boosterIdentifier = boosterItem.getIdentifier();

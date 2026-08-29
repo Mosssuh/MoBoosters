@@ -1,10 +1,10 @@
 package mv.mossuh.moboosters.COMMANDS;
 
 import org.bukkit.command.CommandSender;
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
-import mv.mossuh.moboosters.CONFIGS.Messages;
-import mv.mossuh.moboosters.ENUMS.DebugType;
-import mv.mossuh.moboosters.DEBUG.Debugs;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.DATA.Config.Messages;
+import mv.mossuh.moboosters.UTILITIES.Enums.DebugType;
+import mv.mossuh.moboosters.MANAGER.DebugManager;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 
 public class DebugCommands {
@@ -33,7 +33,7 @@ public class DebugCommands {
                         }
 
                         if (type != DebugType.NONE) {
-                            boolean status = Debugs.changeStatus(type);
+                            boolean status = DebugManager.changeStatus(type);
                             UtilString.get(Config.PREFIX + "&b" + type.name() + " &bDebug: &a" + status).hex().sendMessage(sender);
                         }
                     } else {

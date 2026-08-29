@@ -1,6 +1,6 @@
 package mv.mossuh.moboosters.COMMANDS;
 
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
 import mv.mossuh.moboosters.MoBoosters;
 import mv.mossuh.mocore.UTILITIES.ARGS.CommandArgs.CommandArgs;
 import org.bukkit.command.Command;
@@ -8,12 +8,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItems;
-import mv.mossuh.moboosters.NBT.NBTBooster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
+import mv.mossuh.moboosters.MANAGER.BoosterCreator;
+import mv.mossuh.moboosters.UTILITIES.Nbt.NBTBooster;
 import mv.mossuh.moboosters.UTILITIES.UtilMethods;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
-import mv.mossuh.moboosters.CONFIGS.Messages;
+import mv.mossuh.moboosters.DATA.Config.Messages;
 
 import java.util.List;
 
@@ -69,7 +69,7 @@ public class Commands implements CommandExecutor {
                     BoostBoosterCommands.onCommand(sender, strings);
                     break;
                 case "reload":
-                    MoBoosters.getInstance().getConfigs().reload();
+                    MoBoosters.getInstance().getConfigManager().reload();
                     UtilString.get(Config.PREFIX+" &aConfiguration reloaded!").hex().sendMessage(sender);
                     break;
                 case "boosters":
@@ -83,7 +83,7 @@ public class Commands implements CommandExecutor {
                 case "check":
                     if (sender instanceof Player) {
                         Player player = (Player) sender;
-                        BoosterItem boosterItem = BoosterItems.get(player.getItemInHand());
+                        BoosterItem boosterItem = BoosterCreator.get(player.getItemInHand());
                         ItemStack itemStack = boosterItem.getItemStack();
                         UtilString.get("&r").hex().sendMessage(sender);
                         UtilString.get("&8--------------------------------------").hex().sendMessage(sender);

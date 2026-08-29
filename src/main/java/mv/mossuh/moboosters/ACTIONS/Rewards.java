@@ -18,8 +18,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
+import mv.mossuh.moboosters.MODEL.Booster.Config.BoosterConfig;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
 import mv.mossuh.moboosters.MoBoosters;
 
 import java.util.List;

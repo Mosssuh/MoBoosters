@@ -11,8 +11,8 @@ import mv.mossuh.mocore.UTILITIES.ARGS.Args;
 import mv.mossuh.mocore.UTILITIES.ARGS.CommandArgs.CommandArgs;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import org.bukkit.entity.Player;
-import mv.mossuh.moboosters.CONFIGS.Booster.BoosterConfig;
-import mv.mossuh.moboosters.BOOSTERS.Items.BoosterItem;
+import mv.mossuh.moboosters.MODEL.Booster.Config.BoosterConfig;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
 import mv.mossuh.moboosters.UTILITIES.DefaultVariables;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 

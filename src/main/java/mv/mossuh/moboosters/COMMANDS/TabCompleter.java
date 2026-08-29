@@ -1,14 +1,14 @@
 package mv.mossuh.moboosters.COMMANDS;
 
-import mv.mossuh.moboosters.ENUMS.ApplicatorType;
+import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import mv.mossuh.moboosters.CONFIGS.Config.Config;
-import mv.mossuh.moboosters.CONFIGS.Configs;
-import mv.mossuh.moboosters.ENUMS.BoosterType;
-import mv.mossuh.moboosters.ENUMS.DurationType;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.MANAGER.ConfigManager;
+import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
+import mv.mossuh.moboosters.UTILITIES.Enums.DurationType;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public class TabCompleter implements org.bukkit.command.TabCompleter {
                     case "give":
                     case "giveall":
                     case "activate":
-                        return Configs.getCodes();
+                        return ConfigManager.getCodes();
                     case "setbooster":
                     case "addtime":
                     case "removetime":

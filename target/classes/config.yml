@@ -1,4 +1,14 @@
 Config:
+  database:
+    # Set to true to use MySQL, false for SQLite
+    use-mysql: false
+    # MySQL settings (only used when use-mysql: true)
+    mysql:
+      host: localhost
+      port: 3306
+      database: moboosters
+      user: root
+      password: ""
   # The identifier is used to have several boosters of the same type, this is in case you want
   # the booster to be applied by different plugins, for example, you want one boost to be applied to Pets, another to Armor, etc.
   # If the identifier is not here, this booster will not work.
