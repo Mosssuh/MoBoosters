@@ -114,7 +114,7 @@ public class ClaimItemBooster implements Listener {
             cancelledClaim = rewards.cancelClaim();
         }
 
-        Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+        Booster booster = Booster.getBooster(boosterIdentifier, uuid);
         if (!booster.isValid()) {
             UtilString.get(Config.PREFIX + " &fBooster Info: &cINVALID").hex().sendMessageInConsole(debugType);
             UtilString.get(Config.PREFIX + " &&8&m---------------------").hex().sendMessageInConsole(debugType);

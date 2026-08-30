@@ -304,6 +304,7 @@ public class RewardMethods {
         // ACCUMULATE_BOOSTER -> <identifier>::<booster type>::<applicator type>::<boosted>::<boost>::<duration>/PERM
         if (entity instanceof Player){
             Player player = (Player) entity;
+            UUID uuid = player.getUniqueId();
             String[] split = information.split("::", 6);
             if  (split.length < 5) return true;
             String identifier = split[0];
@@ -330,7 +331,7 @@ public class RewardMethods {
             }
 
             BoosterIdentifier id = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
-            Booster booster = UtilMethods.getBooster(id, player);
+            Booster booster = Booster.getBooster(id, uuid);
             if (!booster.isValid()) return true;
 
             List<VariableArg> variables = new ArrayList<>(DefaultVariables.boosterIdentifier(id));
@@ -376,6 +377,7 @@ public class RewardMethods {
         // SET_BOOSTER -> <identifier>::<booster type>::<applicator type>::<boosted>::<boost>::<duration>/PERM
         if (entity instanceof Player){
             Player player = (Player) entity;
+            UUID uuid = player.getUniqueId();
             String[] split = information.split("::", 6);
             if  (split.length < 5) return;
             String identifier = split[0];
@@ -402,7 +404,7 @@ public class RewardMethods {
             }
 
             BoosterIdentifier id = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
-            Booster booster = UtilMethods.getBooster(id, player);
+            Booster booster = Booster.getBooster(id, uuid);
             if (!booster.isValid()) return;
 
             List<VariableArg> variables = new ArrayList<>(DefaultVariables.boosterIdentifier(id));

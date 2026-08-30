@@ -20,6 +20,7 @@ import mv.mossuh.moboosters.DATA.Config.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SetBoosterCommands {
     public static void onCommand(CommandSender sender, String[] strings) {
@@ -46,11 +47,13 @@ public class SetBoosterCommands {
                         if (!UtilString.get(boostAsString).isNumeric()) { UtilString.get(Messages.INVALID_BOOST).hex().sendMessage(sender); return; }
                         if (!UtilString.get(durationAsString).isNumeric()) { UtilString.get(Messages.INVALID_DURATION).hex().sendMessage(sender); return; }
 
+                        UUID uuid = player.getUniqueId();
+
                         double boost = Double.parseDouble(boostAsString);
                         long duration = Math.round(Double.parseDouble(durationAsString));
 
                         BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
-                        Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                        Booster booster = Booster.getBooster(boosterIdentifier, uuid);
 
                         ActiveBooster active = BoostersAPI.getManager().setTempBoost(booster, boost, duration);
                         if (!active.isValid()) { return; }
@@ -94,10 +97,12 @@ public class SetBoosterCommands {
                         if (applicatorType.equals(ApplicatorType.NONE)) { UtilString.get(Messages.INVALID_APPLICATOR_TYPE).hex().sendMessage(sender); return; }
                         if (!UtilString.get(boostAsString).isNumeric()) { UtilString.get(Messages.INVALID_BOOST).hex().sendMessage(sender); return; }
 
+                        UUID uuid = player.getUniqueId();
+
                         double boost = Double.parseDouble(boostAsString);
 
                         BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifier, boosterType, applicatorType, boosted);
-                        Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                        Booster booster = Booster.getBooster(boosterIdentifier, uuid);
 
                         ActiveBooster active = BoostersAPI.getManager().setPermBoost(booster, boost);
 

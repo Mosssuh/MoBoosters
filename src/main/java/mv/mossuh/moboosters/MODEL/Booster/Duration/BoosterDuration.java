@@ -13,25 +13,25 @@ public class BoosterDuration {
         this.startTimeInMilliSeconds = System.currentTimeMillis();
     }
 
-    public long getDuration() {
+    public synchronized long getDuration() {
         return durationInSeconds;
     }
-    public long getStartingTimeInMilliSeconds() { return startTimeInMilliSeconds; }
+    public synchronized long getStartingTimeInMilliSeconds() { return startTimeInMilliSeconds; }
 
-    public void addDuration(Long durationInSeconds) {
+    public synchronized void addDuration(Long durationInSeconds) {
         long remainingDuration = getRemainingTime();
         if (durationInSeconds < 0) { durationInSeconds = 0L; }
         this.durationInSeconds = (remainingDuration + durationInSeconds);
         this.startTimeInMilliSeconds = System.currentTimeMillis();
     }
 
-    public void setDuration(Long durationInSeconds) {
+    public synchronized void setDuration(Long durationInSeconds) {
         if (durationInSeconds < 0) { durationInSeconds = 0L; }
         this.durationInSeconds = durationInSeconds;
         this.startTimeInMilliSeconds = System.currentTimeMillis();
     }
 
-    public void removeDuration(Long durationInSeconds) {
+    public synchronized void removeDuration(Long durationInSeconds) {
         long remainingDuration = getRemainingTime();
         if (durationInSeconds < 0) { durationInSeconds = 0L; }
 
@@ -41,11 +41,11 @@ public class BoosterDuration {
         this.startTimeInMilliSeconds = System.currentTimeMillis();
     }
 
-    public long getRemainingTime() {
+    public synchronized long getRemainingTime() {
         return UtilMethods.showCooldown(durationInSeconds, startTimeInMilliSeconds);
     }
 
-    public String getRemainingTimeFormatted() {
+    public synchronized String getRemainingTimeFormatted() {
         if (durationInSeconds <= 0) {
             return "0" + UtilString.get(Config.TIME_FORMAT_SECOND).hex().apply();
         } else {

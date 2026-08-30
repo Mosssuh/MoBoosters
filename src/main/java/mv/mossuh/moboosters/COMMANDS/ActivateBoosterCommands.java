@@ -74,7 +74,7 @@ public class ActivateBoosterCommands {
                         }
 
 
-                        Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                        Booster booster = Booster.getBooster(boosterIdentifier, uuid);
 
                         if (booster.isValid() && boosterItem.isBoost()) {
                             double boost = Double.parseDouble(boosterItem.getBoost());

@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class BoosterIdentifier {
 
-    private String identifier = "default";
+    private String identifier = "";
     private BoosterType boosterType = BoosterType.NONE;
     private ApplicatorType applicatorType = ApplicatorType.NONE;
     private String boosted = "";

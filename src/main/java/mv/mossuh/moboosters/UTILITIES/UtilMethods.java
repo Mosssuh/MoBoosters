@@ -8,11 +8,6 @@ import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.GlobalBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.InvalidBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.PersonalBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterItem;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
@@ -233,22 +228,6 @@ public class UtilMethods {
         } else {
             return "0" + second;
         }
-    }
-
-    public static Booster getBooster(BoosterIdentifier boosterIdentifier, Player player) {
-        Booster booster = new InvalidBooster();
-        BoosterType boosterType = boosterIdentifier.getBoosterType();
-        if (boosterType.equals(BoosterType.PERSONAL)) {
-            booster = new PersonalBooster(player.getUniqueId(), boosterIdentifier);
-        } else if (boosterType.equals(BoosterType.GLOBAL)) {
-            booster = new GlobalBooster(boosterIdentifier);
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-            if (superiorPlayer.hasIsland()) {
-                booster = new SuperiorSkyblock2Booster(superiorPlayer.getIsland().getUniqueId(), boosterIdentifier);
-            }
-        }
-        return booster;
     }
 
     public static boolean isRegisteredBooster(BoosterIdentifier boosterIdentifier, DurationType durationType) {

@@ -9,26 +9,26 @@ public class PermanentBoost implements Boost{
         if (boost != null) { this.boost = boost; }
     }
 
-    public double getBoost() { return boost; }
+    public synchronized double getBoost() { return boost; }
 
-    public void addBoost(double boost) {
+    public synchronized void addBoost(double boost) {
         if (boost < 0) { boost = 0; }
         this.boost = this.boost + boost;
     }
 
-    public void setBoost(double boost) {
+    public synchronized void setBoost(double boost) {
         if (boost < 0) { boost = 0; }
         this.boost = boost;
     }
 
-    public void removeBoost(double boost) {
+    public synchronized void removeBoost(double boost) {
         if (boost < 0) { boost = 0; }
         double newBoost = this.boost - boost;
         if (newBoost < 0) { newBoost = 0; }
         this.boost = newBoost;
     }
 
-    public boolean isActive() {
+    public synchronized boolean isActive() {
         return boost > 0;
     }
 

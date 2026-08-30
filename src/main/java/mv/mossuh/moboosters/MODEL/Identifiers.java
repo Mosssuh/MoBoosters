@@ -1,15 +1,24 @@
 package mv.mossuh.moboosters.MODEL;
 
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.UTILITIES.UtilString;
+
 import java.util.*;
 
 public class Identifiers {
     private Set<String> identifiers = new HashSet<>();
+    private Set<String> internalIdentifiers = new HashSet<>();
 
     public Identifiers(List<String> identifiers) {
-        if (identifiers != null) {
-            for (String identifier : identifiers) {
-                this.identifiers.add(identifier.toLowerCase());
+        if (identifiers == null) return;
+
+        for (String identifier : identifiers) {
+            String id = identifier.toLowerCase();
+            if (id.startsWith("internal_")) {
+                UtilString.get(Config.PREFIX + " &cDon't allowed to register " + id + ". Identifiers beginning with internal are reserved.").hex().sendMessageInConsole();
+                continue;
             }
+            this.identifiers.add(identifier.toLowerCase());
         }
     }
 
@@ -36,19 +45,26 @@ public class Identifiers {
         }
         this.identifiers.addAll(newIdentifiers);
     }
+
+    // Checker for Internal and Config Identifiers
     public boolean hasIdentifier(String identifier) {
+        if (identifier == null || identifier.isEmpty()) return false;
+        if (identifier.equalsIgnoreCase("default")) return true;
+        identifier = identifier.toLowerCase();
+
+        return identifiers.contains(identifier) || internalIdentifiers.contains(identifier);
+    }
+
+    // Add an Internal Identifier
+    public void addInternalIdentifier(String... identifier) {
+        Set<String> newIdentifiers = new HashSet<>();
         if (identifier != null) {
-            if (!identifier.isEmpty()) {
-                if (identifier.equalsIgnoreCase("default")) {
-                    return true;
-                }
-                for (String i : identifiers) {
-                    if (i.equalsIgnoreCase(identifier)) {
-                        return true;
-                    }
-                }
+            for (String i : identifier) {
+                String internal  = "internal_"+i.toLowerCase();
+                newIdentifiers.add(internal);
             }
         }
-        return false;
+        this.internalIdentifiers.addAll(newIdentifiers);
     }
+
 }

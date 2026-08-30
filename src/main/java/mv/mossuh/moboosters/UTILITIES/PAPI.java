@@ -11,6 +11,8 @@ import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
 import mv.mossuh.moboosters.UTILITIES.Enums.DurationType;
 
+import java.util.UUID;
+
 public class PAPI extends PlaceholderExpansion {
     private final MoBoosters instance = MoBoosters.getInstance();
 
@@ -92,6 +94,8 @@ public class PAPI extends PlaceholderExpansion {
             return "";
         }
 
+        UUID uuid = player.getUniqueId();
+
         if (identifier.toLowerCase().startsWith("has_booster_")) {
             // %moboosters_has_booster_<duration type>:<identifier>:<booster type>:<applicator type>:<boosted>%
             String boosterInformation = identifier.replaceAll(" ", "").replace("has_booster_", "");
@@ -104,7 +108,7 @@ public class PAPI extends PlaceholderExpansion {
                 String boosted = boosterInformationSplit[4];
 
                 BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifierString, boosterType, applicatorType, boosted);
-                Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                Booster booster = Booster.getBooster(boosterIdentifier, uuid);
                 ActiveBooster active = ActiveBoosterManager.getActiveBooster(booster);
                 return String.valueOf(active.getBoosts().getBoost(durationType).getBoost() > 0);
             }
@@ -120,7 +124,7 @@ public class PAPI extends PlaceholderExpansion {
                 String boosted = boosterInformationSplit[4];
 
                 BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifierString, boosterType, applicatorType, boosted);
-                Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                Booster booster = Booster.getBooster(boosterIdentifier, uuid);
 
                 if (identifierString.equalsIgnoreCase("all")) {
                     double boost = ActiveBoosterManager.getBoost(durationType, booster, true);
@@ -142,7 +146,7 @@ public class PAPI extends PlaceholderExpansion {
                 String boosted = boosterInformationSplit[4];
 
                 BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifierString, boosterType, applicatorType, boosted);
-                Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                Booster booster = Booster.getBooster(boosterIdentifier, uuid);
 
                 if (identifierString.equalsIgnoreCase("all")) {
                     double boost = ActiveBoosterManager.getBoost(durationType, booster, true);
@@ -164,7 +168,7 @@ public class PAPI extends PlaceholderExpansion {
                 String boosted = boosterInformationSplit[3];
 
                 BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifierString, boosterType, applicatorType, boosted);
-                Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                Booster booster = Booster.getBooster(boosterIdentifier, uuid);
                 ActiveBooster active = ActiveBoosterManager.getActiveBooster(booster);
                 return String.valueOf(active.getBoosts().getTemporary().getDuration().getRemainingTime());
             }
@@ -180,7 +184,7 @@ public class PAPI extends PlaceholderExpansion {
                 String boosted = boosterInformationSplit[3];
 
                 BoosterIdentifier boosterIdentifier = new BoosterIdentifier(identifierString, boosterType, applicatorType, boosted);
-                Booster booster = UtilMethods.getBooster(boosterIdentifier, player);
+                Booster booster = Booster.getBooster(boosterIdentifier, uuid);
                 ActiveBooster active = ActiveBoosterManager.getActiveBooster(booster);
                 return String.valueOf(active.getBoosts().getTemporary().getDuration().getRemainingTimeFormatted());
             }
