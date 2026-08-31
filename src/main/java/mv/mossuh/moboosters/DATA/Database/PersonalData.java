@@ -22,6 +22,19 @@ public class PersonalData extends BoosterData<PersonalBooster> {
     }
 
     @Override
+    protected String getCreateTableSQL() {
+        return "CREATE TABLE IF NOT EXISTS PersonalBoosters (" +
+               "uuid VARCHAR(36) NOT NULL, " +
+               "identifier VARCHAR(255) NOT NULL, " +
+               "applicatorType VARCHAR(255) NOT NULL, " +
+               "boosted VARCHAR(255) NOT NULL, " +
+               "boost DOUBLE NOT NULL, " +
+               "durationType VARCHAR(255) NOT NULL, " +
+               "remainingDuration BIGINT NOT NULL, " +
+               "PRIMARY KEY (uuid, identifier, applicatorType, boosted, durationType))";
+    }
+
+    @Override
     protected BoosterType getBoosterType() {
         return BoosterType.PERSONAL;
     }

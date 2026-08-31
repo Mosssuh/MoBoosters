@@ -1,4 +1,4 @@
-package mv.mossuh.moboosters.MENU.ActiveBoosters;
+package mv.mossuh.moboosters.MENU;
 
 import mv.mossuh.moboosters.API.BoostersAPI;
 import mv.mossuh.moboosters.MODEL.ActiveBooster.ActiveBooster;

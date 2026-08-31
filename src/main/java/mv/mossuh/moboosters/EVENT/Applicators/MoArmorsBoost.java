@@ -8,11 +8,10 @@ import mv.mossuh.moarmors.ENUMS.ReceiveType;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 import java.util.UUID;
 
-public class MoArmorsBoost extends EventApplicatorHook implements Listener {
+public class MoArmorsBoost extends EventApplicatorHook {
 
     public MoArmorsBoost() {
         super(ApplicatorType.MOARMORS);

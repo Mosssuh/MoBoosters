@@ -14,7 +14,7 @@ Boosters:
       lore:
         - ''
         - '&bRedeem this item to receive'
-        - '&ba &ax%boost% &bboost for &a%duration_formatted%'
+        - '&ba &a+ x%boost% &bboost for &a%duration_formatted%'
         - ''
         - '&aRight click to claim!'
   VaultAddBoost:

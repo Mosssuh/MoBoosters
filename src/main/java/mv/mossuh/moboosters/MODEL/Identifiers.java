@@ -56,15 +56,12 @@ public class Identifiers {
     }
 
     // Add an Internal Identifier
-    public void addInternalIdentifier(String... identifier) {
-        Set<String> newIdentifiers = new HashSet<>();
-        if (identifier != null) {
-            for (String i : identifier) {
-                String internal  = "internal_"+i.toLowerCase();
-                newIdentifiers.add(internal);
-            }
-        }
-        this.internalIdentifiers.addAll(newIdentifiers);
+    public String addInternalIdentifier(String identifier) {
+        if (identifier == null) return "";
+
+        String internal = "internal_"+identifier.toLowerCase();
+        this.internalIdentifiers.add(internal);
+        return internal;
     }
 
 }

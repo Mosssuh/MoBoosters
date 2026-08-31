@@ -6,11 +6,10 @@ import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 import java.util.UUID;
 
-public class JobsRebornBoost extends EventApplicatorHook implements Listener {
+public class JobsRebornBoost extends EventApplicatorHook {
 
     public JobsRebornBoost() {
         super(ApplicatorType.JOBSREBORN);

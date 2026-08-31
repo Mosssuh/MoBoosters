@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters.COMMANDS;
 
 import mv.mossuh.moboosters.DATA.Config.Messages;
-import mv.mossuh.moboosters.MENU.ActiveBoosters.PlayerActiveBoostersMenu;
+import mv.mossuh.moboosters.MENU.PlayerActiveBoostersMenu;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

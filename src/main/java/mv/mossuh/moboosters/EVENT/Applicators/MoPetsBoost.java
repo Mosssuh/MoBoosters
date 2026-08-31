@@ -8,11 +8,10 @@ import mv.mossuh.mopets.CONFIGS.Pets.PetIdentifier;
 import mv.mossuh.mopets.ENUMS.ReceiveType;
 import mv.mossuh.mopets.PETS.Pet.Pet;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 import java.util.UUID;
 
-public class MoPetsBoost extends EventApplicatorHook implements Listener {
+public class MoPetsBoost extends EventApplicatorHook {
 
     public MoPetsBoost() {
         super(ApplicatorType.MOPETS);

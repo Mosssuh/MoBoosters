@@ -10,7 +10,6 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -19,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
-public class MinecraftBoost extends EventApplicatorHook implements Listener {
+public class MinecraftBoost extends EventApplicatorHook {
 
     public MinecraftBoost() {
         super(ApplicatorType.MINECRAFT);

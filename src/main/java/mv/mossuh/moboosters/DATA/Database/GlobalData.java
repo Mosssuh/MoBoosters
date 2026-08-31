@@ -19,6 +19,18 @@ public class GlobalData extends BoosterData<GlobalBooster> {
     }
 
     @Override
+    protected String getCreateTableSQL() {
+        return "CREATE TABLE IF NOT EXISTS GlobalBoosters (" +
+               "identifier VARCHAR(255) NOT NULL, " +
+               "applicatorType VARCHAR(255) NOT NULL, " +
+               "boosted VARCHAR(255) NOT NULL, " +
+               "boost DOUBLE NOT NULL, " +
+               "durationType VARCHAR(255) NOT NULL, " +
+               "remainingDuration BIGINT NOT NULL, " +
+               "PRIMARY KEY (identifier, applicatorType, boosted, durationType))";
+    }
+
+    @Override
     protected BoosterType getBoosterType() {
         return BoosterType.GLOBAL;
     }

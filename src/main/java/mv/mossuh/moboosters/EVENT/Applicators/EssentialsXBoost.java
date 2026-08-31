@@ -5,12 +5,11 @@ import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
 import net.ess3.api.events.UserBalanceUpdateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class EssentialsXBoost extends EventApplicatorHook implements Listener {
+public class EssentialsXBoost extends EventApplicatorHook {
 
     public EssentialsXBoost() {
         super(ApplicatorType.ESSENTIALSX);

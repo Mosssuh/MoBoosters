@@ -6,7 +6,7 @@
 
     <groupId>mv.mossuh</groupId>
     <artifactId>MoBoosters</artifactId>
-    <version>0.0.1-dev.4</version>
+    <version>0.0.1-dev.5</version>
     <packaging>jar</packaging>
 
     <name>MoBoosters</name>
@@ -80,6 +80,14 @@
             <id>rosewood-repo</id>
             <url>https://repo.rosewooddev.io/repository/public/</url>
         </repository>
+        <repository>
+            <id>mcmmo-repo</id>
+            <url>https://nexus.neetgames.com/repository/maven-public</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -144,6 +152,46 @@
             <groupId>org.black_ixx</groupId>
             <artifactId>playerpoints</artifactId>
             <version>3.3.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>Jobs</groupId>
+            <artifactId>jobs</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Jobs5.2.6.6.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>me.rivaldev</groupId>
+            <artifactId>Pets</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/RivalPetsAPI.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>me.rivaldev</groupId>
+            <artifactId>Pickaxes</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/RivalPickaxesAPI.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>me.rivaldev</groupId>
+            <artifactId>HarvesterHoes</artifactId>
+            <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/RivalHarvesterHoesAPI.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.gmail.nossr50.mcMMO</groupId>
+            <artifactId>mcMMO</artifactId>
+            <version>2.3.001-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.aurelium</groupId>
+            <artifactId>auraskills-api-bukkit</artifactId>
+            <version>2.3.12</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

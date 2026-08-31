@@ -14,9 +14,9 @@ public class BoostersAPI {
         return boosterManager;
     }
 
-    public static void registerApplicator(JavaPlugin plugin, ApplicatorHook... module) {
-        for (ApplicatorHook m : module) {
-            HooksManager.registerApplicator(plugin, m);
+    public static void registerApplicator(JavaPlugin plugin, ApplicatorHook... hooks) {
+        for (ApplicatorHook h : hooks) {
+            HooksManager.registerApplicator(plugin, h);
         }
     }
 

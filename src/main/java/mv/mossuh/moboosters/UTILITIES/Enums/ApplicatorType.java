@@ -14,6 +14,11 @@ public class ApplicatorType {
     public static final ApplicatorType ESSENTIALSX = new ApplicatorType("ESSENTIALSX");
     public static final ApplicatorType JOBSREBORN = new ApplicatorType("JOBSREBORN");
     public static final ApplicatorType PLAYERPOINTS = new ApplicatorType("PLAYERPOINTS");
+    public static final ApplicatorType RIVALHARVESTERHOES = new ApplicatorType("RIVALHARVESTERHOES");
+    public static final ApplicatorType RIVALPETS = new ApplicatorType("RIVALPETS");
+    public static final ApplicatorType RIVALPICKAXES = new ApplicatorType("RIVALPICKAXES");
+    public static final ApplicatorType MCMMO = new ApplicatorType("MCMMO");
+    public static final ApplicatorType AURASKILLS = new ApplicatorType("AURASKILLS");
     public static final ApplicatorType NONE = new ApplicatorType("NONE");
 
     private final String applicator;

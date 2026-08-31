@@ -24,6 +24,8 @@ public abstract class BoosterData<T extends Booster> {
 
     protected abstract String getTableName();
 
+    protected abstract String getCreateTableSQL();
+
     protected abstract BoosterType getBoosterType();
 
     protected abstract T createBoosterFromRow(ResultSet rs) throws SQLException;
@@ -34,11 +36,20 @@ public abstract class BoosterData<T extends Booster> {
 
     protected abstract void setStatementKey(PreparedStatement ps, T booster) throws SQLException;
 
+    // ==================== TABLE CREATION ====================
+
+    private void ensureTableExists(Connection conn) throws SQLException {
+        try (Statement stmt = conn.createStatement()) {
+            stmt.execute(getCreateTableSQL());
+        }
+    }
+
     // ==================== LOAD: Database -> Memory ====================
 
     public void registerDatabaseInMaps() {
         try (Connection conn = instance.getConnection()) {
             if (conn == null) return;
+            ensureTableExists(conn);
             try (Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery("SELECT * FROM " + getTableName())) {
 
@@ -74,6 +85,7 @@ public abstract class BoosterData<T extends Booster> {
 
         try (Connection conn = instance.getConnection()) {
             if (conn == null) return;
+            ensureTableExists(conn);
             conn.setAutoCommit(false);
 
             try (PreparedStatement deletePs = conn.prepareStatement(deleteSQL);
@@ -187,14 +199,23 @@ public abstract class BoosterData<T extends Booster> {
 
     private String buildInsertSQL() {
         boolean hasOwner = hasOwnerUUID();
+        String columns;
+        String placeholders;
         if (hasOwner) {
-            return "INSERT OR REPLACE INTO " + getTableName() +
-                   " (uuid, identifier, applicatorType, boosted, boost, durationType, remainingDuration) " +
-                   "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            columns = "uuid, identifier, applicatorType, boosted, boost, durationType, remainingDuration";
+            placeholders = "?, ?, ?, ?, ?, ?, ?";
         } else {
-            return "INSERT OR REPLACE INTO " + getTableName() +
-                   " (identifier, applicatorType, boosted, boost, durationType, remainingDuration) " +
-                   "VALUES (?, ?, ?, ?, ?, ?)";
+            columns = "identifier, applicatorType, boosted, boost, durationType, remainingDuration";
+            placeholders = "?, ?, ?, ?, ?, ?";
+        }
+
+        if (Config.MYSQL_ENABLED) {
+            String updateClause = hasOwner
+                ? "uuid=VALUES(uuid), boost=VALUES(boost), durationType=VALUES(durationType), remainingDuration=VALUES(remainingDuration)"
+                : "boost=VALUES(boost), durationType=VALUES(durationType), remainingDuration=VALUES(remainingDuration)";
+            return "INSERT INTO " + getTableName() + " (" + columns + ") VALUES (" + placeholders + ") ON DUPLICATE KEY UPDATE " + updateClause;
+        } else {
+            return "INSERT OR REPLACE INTO " + getTableName() + " (" + columns + ") VALUES (" + placeholders + ")";
         }
     }
 

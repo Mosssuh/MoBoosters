@@ -15,7 +15,7 @@ Boosters:
       lore:
         - ''
         - '&bType: &aPersonal'
-        - '&bBoost: &a+%boost%'
+        - '&bBoost: &a+ x%boost%'
         - '&bDuration: &a%duration_formatted%'
         - ''
         - '&8If you have a %boost% boost, the time'
@@ -57,7 +57,7 @@ Boosters:
       lore:
         - ''
         - '&bType: &aGlobal'
-        - '&bBoost: &a+%boost%'
+        - '&bBoost: &a+ x%boost%'
         - '&bDuration: &a%duration_formatted%'
         - ''
         - '&bRequirements'
@@ -76,10 +76,10 @@ Boosters:
   MobCoins:
     # This booster is normal, without actions
     identifier: default
-    type: SuperiorSkyblock2
-    applicator: QuadrexMobCoins
-    boosted: MobCoins
-    boost: 2.5
+    type: Personal
+    applicator: Minecraft
+    boosted: melee_damage
+    boost: 1
     duration: PERM
     item-info:
       material: PAPER
@@ -88,6 +88,6 @@ Boosters:
       lore:
         - ''
         - '&bRedeem this item to receive'
-        - '&ba &ax%boost% &bboost for &a%duration_formatted%'
+        - '&ba &a+ x%boost% &bboost for &a%duration_formatted%'
         - ''
         - '&aRight click to claim!'
