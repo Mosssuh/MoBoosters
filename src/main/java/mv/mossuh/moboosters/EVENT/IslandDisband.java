@@ -8,7 +8,7 @@ import mv.mossuh.moboosters.API.BoostersAPI;
 import mv.mossuh.moboosters.MODEL.ActiveBooster.ActiveBooster;
 import mv.mossuh.moboosters.MANAGER.ActiveBoosterManager;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.TeamBooster;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
 
 import java.util.ArrayList;
@@ -21,15 +21,16 @@ public class IslandDisband implements Listener {
         Island island = event.getIsland();
         UUID islandUUID = island.getUniqueId();
 
-        List<ActiveBooster> activeBoosters = ActiveBoosterManager.getActiveBoosters(BoosterType.SUPERIORSKYBLOCK2);
-        List<Booster> islandActiveBoosters = new ArrayList<>();
+        List<ActiveBooster> activeBoosters = ActiveBoosterManager.getActiveBoosters(BoosterType.TEAM);
+
+        List<Booster> teamBoosters = new ArrayList<>();
         for (ActiveBooster activeBooster : activeBoosters) {
-            SuperiorSkyblock2Booster booster = (SuperiorSkyblock2Booster) activeBooster.getBooster();
+            TeamBooster booster = (TeamBooster) activeBooster.getBooster();
             if (booster.getUUID().equals(islandUUID)) {
-                islandActiveBoosters.add(activeBooster.getBooster());
+                teamBoosters.add(activeBooster.getBooster());
             }
         }
 
-        BoostersAPI.getManager().removeBooster(islandActiveBoosters);
+        BoostersAPI.getManager().removeBooster(teamBoosters);
     }
 }

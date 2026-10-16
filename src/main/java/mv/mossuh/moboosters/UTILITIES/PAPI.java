@@ -101,9 +101,9 @@ public class PAPI extends PlaceholderExpansion {
             String boosterInformation = identifier.replaceAll(" ", "").replace("has_booster_", "");
             String[] boosterInformationSplit = boosterInformation.split(":" ,5);
             if (boosterInformationSplit.length == 5) {
-                DurationType durationType = UtilMethods.getDurationType(boosterInformationSplit[0]);
+                DurationType durationType = DurationType.getDurationType(boosterInformationSplit[0]);
                 String identifierString = boosterInformationSplit[1];
-                BoosterType boosterType = UtilMethods.getBoosterType(boosterInformationSplit[2]);
+                BoosterType boosterType = BoosterType.getBoosterType(boosterInformationSplit[2]);
                 ApplicatorType applicatorType = ApplicatorType.convert(boosterInformationSplit[3]);
                 String boosted = boosterInformationSplit[4];
 
@@ -117,9 +117,9 @@ public class PAPI extends PlaceholderExpansion {
             String boosterInformation = identifier.replaceAll(" ", "").replace("boost_with_base_", "");
             String[] boosterInformationSplit = boosterInformation.split(":" ,5);
             if (boosterInformationSplit.length == 5) {
-                DurationType durationType = UtilMethods.getDurationType(boosterInformationSplit[0]);
+                DurationType durationType = DurationType.getDurationType(boosterInformationSplit[0]);
                 String identifierString = boosterInformationSplit[1];
-                BoosterType boosterType = UtilMethods.getBoosterType(boosterInformationSplit[2]);
+                BoosterType boosterType = BoosterType.getBoosterType(boosterInformationSplit[2]);
                 ApplicatorType applicatorType = ApplicatorType.convert(boosterInformationSplit[3]);
                 String boosted = boosterInformationSplit[4];
 
@@ -139,9 +139,9 @@ public class PAPI extends PlaceholderExpansion {
             String boosterInformation = identifier.replaceAll(" ", "").replace("boost_", "");
             String[] boosterInformationSplit = boosterInformation.split(":" ,5);
             if (boosterInformationSplit.length == 5) {
-                DurationType durationType = UtilMethods.getDurationType(boosterInformationSplit[0]);
+                DurationType durationType = DurationType.getDurationType(boosterInformationSplit[0]);
                 String identifierString = boosterInformationSplit[1];
-                BoosterType boosterType = UtilMethods.getBoosterType(boosterInformationSplit[2]);
+                BoosterType boosterType = BoosterType.getBoosterType(boosterInformationSplit[2]);
                 ApplicatorType applicatorType = ApplicatorType.convert(boosterInformationSplit[3]);
                 String boosted = boosterInformationSplit[4];
 
@@ -163,7 +163,7 @@ public class PAPI extends PlaceholderExpansion {
             if (boosterInformationSplit.length == 4) {
                 //DurationType durationType = DurationType.TEMP;
                 String identifierString = boosterInformationSplit[0];
-                BoosterType boosterType = UtilMethods.getBoosterType(boosterInformationSplit[1]);
+                BoosterType boosterType = BoosterType.getBoosterType(boosterInformationSplit[1]);
                 ApplicatorType applicatorType = ApplicatorType.convert(boosterInformationSplit[2]);
                 String boosted = boosterInformationSplit[3];
 
@@ -179,7 +179,7 @@ public class PAPI extends PlaceholderExpansion {
             if (boosterInformationSplit.length == 4) {
                 //DurationType durationType = DurationType.TEMP;
                 String identifierString = boosterInformationSplit[0];
-                BoosterType boosterType = UtilMethods.getBoosterType(boosterInformationSplit[1]);
+                BoosterType boosterType = BoosterType.getBoosterType(boosterInformationSplit[1]);
                 ApplicatorType applicatorType = ApplicatorType.convert(boosterInformationSplit[2]);
                 String boosted = boosterInformationSplit[3];
 

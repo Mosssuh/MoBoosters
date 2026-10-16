@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters.UTILITIES.Cooldown;
 
-import com.bgsoftware.superiorskyblock.api.island.Island;
-import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import mv.mossuh.moboosters.DATA.Config.Config.Config;
+import mv.mossuh.moboosters.MANAGER.HooksManager;
 import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.MoBoosters;
 import org.bukkit.Bukkit;
@@ -10,17 +10,17 @@ import mv.mossuh.moboosters.MANAGER.ActiveBoosterManager;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.GlobalBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.PersonalBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.TeamBooster;
 import mv.mossuh.moboosters.MODEL.Booster.Duration.BoosterDuration;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.DATA.Config.Messages;
 import mv.mossuh.moboosters.API.Events.EndsTemporaryBoosterEvent;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
-import mv.mossuh.moboosters.UTILITIES.UtilMethods;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -40,8 +40,8 @@ public class BoosterCooldown {
             startCooldown((PersonalBooster) booster, boost);
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             startCooldown((GlobalBooster) booster, boost);
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
-            startCooldown((SuperiorSkyblock2Booster) booster, boost);
+        } else if (boosterType.equals(BoosterType.TEAM)) {
+            startCooldown((TeamBooster) booster, boost);
         }
     }
 
@@ -119,7 +119,7 @@ public class BoosterCooldown {
         }
     }
 
-    private static void startCooldown(SuperiorSkyblock2Booster activeBooster, TemporaryBoost booster) {
+    private static void startCooldown(TeamBooster activeBooster, TemporaryBoost booster) {
         UUID uuid = activeBooster.getUUID();
         BoosterIdentifier boosterIdentifier = activeBooster.getIdentifier();
         BoosterDuration boosterDuration = booster.getDuration();
@@ -143,15 +143,11 @@ public class BoosterCooldown {
                     Bukkit.getPluginManager().callEvent(endsEvent);
                 });
 
-                Island island = UtilMethods.getIslandByUUID(uuid);
-                if (island != null) {
-                    List<SuperiorPlayer> members = island.getIslandMembers(true);
-                    for (SuperiorPlayer member : members) {
-                        if (member.isOnline()) {
-                            UUID memberUUID = member.getUniqueId();
-                            if (boosterIdentifier.getIdentifier().equalsIgnoreCase("default")) {
-                                UtilString.get(Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_END).setVariables(boosterIdentifier).setVariables(copyBooster).hex().sendMessage(memberUUID);
-                            }
+                if (HooksManager.getTeamBoosterHook().isTeam(uuid)) {
+                    Set<UUID> members = HooksManager.getTeamBoosterHook().getMembers(uuid);
+                    for (UUID member : members) {
+                        if (boosterIdentifier.getIdentifier().equalsIgnoreCase(Config.DEFAULT_IDENTIFIER)) {
+                            UtilString.get(Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_END).setVariables(boosterIdentifier).setVariables(copyBooster).hex().sendMessage(member);
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters;
 
 import mv.mossuh.moboosters.API.BoostersAPI;
-import mv.mossuh.moboosters.EVENT.Applicators.MinecraftBoost;
+import mv.mossuh.moboosters.EVENT.Applicators.VanillaBoost;
 import mv.mossuh.moboosters.COMMANDS.Commands;
 import mv.mossuh.moboosters.COMMANDS.TabCompleter;
 import mv.mossuh.moboosters.DATA.Config.Config.Config;
@@ -99,7 +99,7 @@ public final class MoBoosters extends JavaPlugin {
     }
 
     private void registerApplicators() {
-        BoostersAPI.registerApplicator(this, new MinecraftBoost());
+        BoostersAPI.registerApplicator(this, new VanillaBoost());
     }
     private void registerOthers() {
         CentralBoosterListener central = new CentralBoosterListener();
@@ -140,7 +140,7 @@ public final class MoBoosters extends JavaPlugin {
     private static void saveBoostersData() {
         BoosterDataManager.registerMapsInDatabase(BoosterType.PERSONAL);
         BoosterDataManager.registerMapsInDatabase(BoosterType.GLOBAL);
-        BoosterDataManager.registerMapsInDatabase(BoosterType.SUPERIORSKYBLOCK2);
+        BoosterDataManager.registerMapsInDatabase(BoosterType.TEAM);
     }
 
 

@@ -6,6 +6,8 @@ import mv.mossuh.moboosters.DATA.Config.Config.Config;
 import mv.mossuh.moboosters.EVENT.Applicators.Rival.RivalHarvesterHoesBoost;
 import mv.mossuh.moboosters.EVENT.Applicators.Rival.RivalPetsBoost;
 import mv.mossuh.moboosters.EVENT.Applicators.Rival.RivalPickaxesBoost;
+import mv.mossuh.moboosters.MODEL.Hook.Team.SuperiorSkyblock2BoosterHook;
+import mv.mossuh.moboosters.MANAGER.HooksManager;
 import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.EVENTS.PluginCheckerEvent;
 import org.bukkit.event.EventHandler;
@@ -33,10 +35,11 @@ public class PluginChecker implements Listener {
                 UtilString.get(softDependMessage).hex().sendMessageInConsole();
                 break;
             case SuperiorSkyblock2:
+                HooksManager.setTeamBoosterHook(new SuperiorSkyblock2BoosterHook());
                 instance.getServer().getPluginManager().registerEvents(new IslandBoosterListener(instance.getCentralBoosterListener()), instance);
                 instance.getServer().getPluginManager().registerEvents(new IslandDisband(), instance);
-                BoosterDataManager.registerDatabaseInMaps(BoosterType.SUPERIORSKYBLOCK2);
-                BoosterCooldown.initializeActiveBoosters(BoosterType.SUPERIORSKYBLOCK2);
+                BoosterDataManager.registerDatabaseInMaps(BoosterType.TEAM);
+                BoosterCooldown.initializeActiveBoosters(BoosterType.TEAM);
                 UtilString.get(softDependMessage).hex().sendMessageInConsole();
                 break;
             case MoPets:

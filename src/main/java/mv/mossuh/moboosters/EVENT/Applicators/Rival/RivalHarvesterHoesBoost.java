@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters.EVENT.Applicators.Rival;
 
 import me.rivaldev.harvesterhoes.api.events.*;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

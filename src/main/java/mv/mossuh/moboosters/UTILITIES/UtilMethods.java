@@ -1,9 +1,6 @@
 package mv.mossuh.moboosters.UTILITIES;
 
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
-import com.bgsoftware.superiorskyblock.api.island.Island;
-import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
-import mv.mossuh.mocore.ENUMS.PluginType;
+import mv.mossuh.moboosters.MANAGER.HooksManager;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
 import org.bukkit.command.CommandSender;
@@ -85,49 +82,6 @@ public class UtilMethods {
             return player.isOnline();
         }
         return false;
-    }
-
-
-
-    public static DurationType getDurationType(String durationTypeString) {
-        DurationType durationType = DurationType.NONE;
-        if (durationTypeString != null) {
-            switch (durationTypeString.toLowerCase()) {
-                case "temp":
-                case "temporal":
-                case "temporally":
-                    durationType = DurationType.TEMP;
-                    break;
-                case "perm":
-                case "permanent":
-                case "permanently":
-                    durationType = DurationType.PERM;
-                    break;
-            }
-        }
-        return durationType;
-    }
-
-    public static BoosterType getBoosterType(String boosterTypeString) {
-        BoosterType boosterType = BoosterType.NONE;
-        if (boosterTypeString != null) {
-            switch (boosterTypeString.toLowerCase()) {
-                case "personal":
-                case "player":
-                    boosterType = BoosterType.PERSONAL;
-                    break;
-                case "global":
-                case "players":
-                case "all":
-                    boosterType = BoosterType.GLOBAL;
-                    break;
-                case "superiorskyblock":
-                case "superiorskyblock2":
-                    boosterType = BoosterType.SUPERIORSKYBLOCK2;
-                    break;
-            }
-        }
-        return boosterType;
     }
 
 
@@ -248,7 +202,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_TEMP_BOOSTER_START;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_TEMP_BOOSTER_START;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_START;
         }
         return messageReceiver;
@@ -260,7 +214,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_TEMP_BOOSTER_END;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_TEMP_BOOSTER_END;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_END;
         }
         return messageReceiver;
@@ -272,7 +226,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_TEMP_BOOSTER_ADD_TIME;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_TEMP_BOOSTER_ADD_TIME;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_ADD_TIME;
         }
         return messageReceiver;
@@ -284,7 +238,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_TEMP_BOOSTER_REMOVE_TIME;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_TEMP_BOOSTER_REMOVE_TIME;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_TEMP_BOOSTER_REMOVE_TIME;
         }
         return messageReceiver;
@@ -296,7 +250,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_BOOSTER_SET_BOOST;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_BOOSTER_SET_BOOST;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_BOOSTER_SET_BOOST;
         }
         return messageReceiver;
@@ -308,7 +262,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_BOOSTER_ADD_BOOST;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_BOOSTER_ADD_BOOST;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_BOOSTER_ADD_BOOST;
         }
         return messageReceiver;
@@ -320,7 +274,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_BOOSTER_REMOVE_BOOST;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_BOOSTER_REMOVE_BOOST;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_BOOSTER_REMOVE_BOOST;
         }
         return messageReceiver;
@@ -332,7 +286,7 @@ public class UtilMethods {
             messageReceiver = Messages.PERSONAL_BOOSTER_ALREADY_ACTIVE;
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             messageReceiver = Messages.GLOBAL_BOOSTER_ALREADY_ACTIVE;
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
+        } else if (boosterType.equals(BoosterType.TEAM)) {
             messageReceiver = Messages.SUPERIORSKYBLOCK2_BOOSTER_ALREADY_ACTIVE;
         }
         return messageReceiver;
@@ -344,69 +298,23 @@ public class UtilMethods {
 
     public static void sendMessageToReceiver(String messageReceiver, BoosterType boosterType, Player player, List<VariableArg> variables, BoosterItem boosterItem, boolean cancelledMessage) {
         if (!cancelledMessage) {
+            UUID uuid = player.getUniqueId();
             if (boosterType.equals(BoosterType.PERSONAL)) {
                 UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
                         .setVariables(variables).setPlaceholders(player).hex().sendMessage(player);
             } else if (boosterType.equals(BoosterType.GLOBAL)) {
                 UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
                         .setVariables(variables).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
-            } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-                SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-                if (superiorPlayer.hasIsland()) {
-                    List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
-                    for (SuperiorPlayer sPlayer : islandPlayers) {
-                        if (sPlayer.isOnline()) {
-                            UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
-                                    .setVariables(variables).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
-                        }
+            } else if (boosterType.equals(BoosterType.TEAM) && PluginsChecker.isPluginEnabled(boosterType.getHook())) {
+                if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                    UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                    Set<UUID> members = HooksManager.getTeamBoosterHook().getMembers(teamUUID);
+                    for (UUID member : members) {
+                        UtilString.get(messageReceiver).setVariables(player).setVariables(boosterItem)
+                                .setVariables(variables).setPlaceholders(player).hex().sendMessage(member);
                     }
                 }
             }
         }
-    }
-
-
-    public static Set<UUID> getIslandMembers(UUID islandUUID) {
-        Set<UUID> uuids = new HashSet<>();
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            Island island = SuperiorSkyblockAPI.getIslandByUUID(islandUUID);
-            if (island != null) {
-                island.getIslandMembers(true).forEach(sp -> uuids.add(sp.getUniqueId()));
-            }
-        }
-        return uuids;
-    }
-
-    public static Island getIslandByUUID(UUID islandUUID) {
-        return SuperiorSkyblockAPI.getIslandByUUID(islandUUID);
-    }
-
-    public static UUID getIslandUUIDByName(String islandName) {
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            Island island = SuperiorSkyblockAPI.getIsland(islandName);
-            return island.getUniqueId();
-        }
-        return null;
-    }
-
-    public static UUID getIslandUUIDByPlayerUUID(UUID uuid) {
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(uuid);
-            if (superiorPlayer.hasIsland()) {
-                return superiorPlayer.getIsland().getUniqueId();
-            }
-        }
-        return null;
-    }
-
-
-    public static UUID getIslandUUID(Player player) {
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-            if (superiorPlayer.hasIsland()) {
-                return superiorPlayer.getIsland().getUniqueId();
-            }
-        }
-        return null;
     }
 }

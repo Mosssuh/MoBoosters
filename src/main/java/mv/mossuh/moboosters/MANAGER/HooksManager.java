@@ -1,9 +1,11 @@
 package mv.mossuh.moboosters.MANAGER;
 
+import mv.mossuh.moboosters.MODEL.Hook.Team.TeamBoosterHook;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.moboosters.HOOK.ApplicatorHook;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
-import mv.mossuh.moboosters.HOOK.StateApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.ApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.StateApplicatorHook;
+import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Set;
 
 public class HooksManager {
+    private static TeamBoosterHook teamBooster = null;
+
     private static final Set<StateApplicatorHook> manualApplicators = new HashSet<>();
     private static final Set<EventApplicatorHook> eventApplicators = new HashSet<>();
 
@@ -59,5 +63,18 @@ public class HooksManager {
         applicators.addAll(eventApplicators);
         applicators.addAll(manualApplicators);
         return applicators;
+    }
+
+
+
+    public static TeamBoosterHook getTeamBoosterHook() {
+        return teamBooster;
+    }
+    public static boolean hasTeamBoosterHook() {
+        return teamBooster != null;
+    }
+    public static void setTeamBoosterHook(TeamBoosterHook hook) {
+        teamBooster = hook;
+        BoosterType.TEAM.setHook(hook.getPluginType());
     }
 }

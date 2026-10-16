@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters.EVENT.Applicators;
 
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import org.black_ixx.playerpoints.event.PlayerPointsChangeEvent;
 import org.bukkit.event.EventHandler;
 

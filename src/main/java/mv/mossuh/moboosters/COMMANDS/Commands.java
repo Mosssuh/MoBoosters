@@ -27,8 +27,8 @@ public class Commands implements CommandExecutor {
     /moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost> <duration in seconds> #Temporal booster
     /moboosters setbooster <player> <identifier> <booster type> <applicator> <boosted> <boost> #Permanent Booster
 
-    /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> [<player>/<islandName]
-    /moboosters removebooster <identifier> <booster type> <duration type> [<player>/<islandName]
+    /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> [<player>/<teamName>]
+    /moboosters removebooster <identifier> <booster type> <duration type> [<player>/<teamName>]
 
     /moboosters addtime <player> <identifier> <booster type> <applicator> <boosted> <duration in seconds>
     /moboosters removetime <player> <identifier> <booster type> <applicator> <boosted> <duration in seconds>

@@ -3,7 +3,7 @@ package mv.mossuh.moboosters.EVENT.Applicators;
 import com.gamingmesh.jobs.api.JobsPaymentEvent;
 import com.gamingmesh.jobs.container.CurrencyType;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 

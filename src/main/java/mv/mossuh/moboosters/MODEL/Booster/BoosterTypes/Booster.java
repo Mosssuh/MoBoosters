@@ -1,10 +1,8 @@
 package mv.mossuh.moboosters.MODEL.Booster.BoosterTypes;
 
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
-import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import mv.mossuh.moboosters.MANAGER.HooksManager;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
-import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
 
 import java.util.UUID;
@@ -29,12 +27,10 @@ public interface Booster {
             booster = new PersonalBooster(player, identifier);
         } else if (boosterType.equals(BoosterType.GLOBAL)) {
             booster = new GlobalBooster(identifier);
-        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
-            if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-                SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-                if (superiorPlayer.hasIsland()) {
-                    booster = new SuperiorSkyblock2Booster(superiorPlayer.getIsland().getUniqueId(), identifier);
-                }
+        } else if (boosterType.equals(BoosterType.TEAM)) {
+            if (PluginsChecker.isPluginEnabled(BoosterType.TEAM.getHook())) {
+                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(player);
+                booster = new TeamBooster(teamUUID, identifier);
             }
         }
         return booster;

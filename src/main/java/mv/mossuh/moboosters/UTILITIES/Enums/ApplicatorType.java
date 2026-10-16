@@ -7,7 +7,7 @@ import java.util.*;
 public class ApplicatorType {
     private static final Set<ApplicatorType> convertedApplicators = new HashSet<>();
 
-    public static final ApplicatorType MINECRAFT = new ApplicatorType("MINECRAFT");
+    public static final ApplicatorType VANILLA = new ApplicatorType("VANILLA");
     public static final ApplicatorType MOPETS = new ApplicatorType("MOPETS");
     public static final ApplicatorType MOMOMENTUM = new ApplicatorType("MOMOMENTUM");
     public static final ApplicatorType MOARMORS = new ApplicatorType("MOARMORS");

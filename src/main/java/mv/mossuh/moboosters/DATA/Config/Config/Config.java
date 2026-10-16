@@ -50,6 +50,7 @@ public class Config {
     public static String MYSQL_DATABASE;
     public static String MYSQL_USER;
     public static String MYSQL_PASSWORD;
+    public static String DEFAULT_IDENTIFIER = "default";
 
     private static void loadConfig() {
         SAVE_IN_DATABASE_INTERVAL = new Config("Config.save-in-database-interval").getOrDefault(300L);

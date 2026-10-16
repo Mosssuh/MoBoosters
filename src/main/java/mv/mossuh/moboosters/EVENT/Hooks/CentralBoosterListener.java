@@ -8,8 +8,7 @@ import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
 import mv.mossuh.moboosters.UTILITIES.Enums.DebugType;
 import mv.mossuh.moboosters.MANAGER.HooksManager;
-import mv.mossuh.moboosters.HOOK.StateApplicatorHook;
-import mv.mossuh.moboosters.UTILITIES.UtilMethods;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.StateApplicatorHook;
 import mv.mossuh.moboosters.UTILITIES.UtilString;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -77,8 +76,8 @@ public class CentralBoosterListener implements Listener {
                 break;
             case GLOBAL:
                 break;
-            case SUPERIORSKYBLOCK2:
-                UtilMethods.getIslandMembers(booster.getUUID());
+            case TEAM:
+                players.addAll(HooksManager.getTeamBoosterHook().getMembers(booster.getUUID()));
                 break;
         }
         return players;

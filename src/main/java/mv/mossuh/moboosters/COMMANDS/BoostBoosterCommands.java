@@ -1,9 +1,7 @@
 package mv.mossuh.moboosters.COMMANDS;
 
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
-import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import mv.mossuh.moboosters.MANAGER.HooksManager;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.UTILITIES.ARGS.VariableArgs.VariableArg;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
 import org.bukkit.Bukkit;
@@ -15,7 +13,7 @@ import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.GlobalBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.InvalidBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.PersonalBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.TeamBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
 import mv.mossuh.moboosters.UTILITIES.Enums.DurationType;
@@ -26,6 +24,8 @@ import mv.mossuh.moboosters.DATA.Config.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class BoostBoosterCommands {
 
@@ -36,9 +36,9 @@ public class BoostBoosterCommands {
                     if (strings.length == 8) {
                         // /moboosters addboost <player> <duration type> <identifier> <booster type> <applicator> <boosted> <boost>
                         String playerName = strings[1];
-                        DurationType durationType = UtilMethods.getDurationType(strings[2]);
+                        DurationType durationType = DurationType.getDurationType(strings[2]);
                         String identifier = strings[3];
-                        BoosterType boosterType = UtilMethods.getBoosterType(strings[4]);
+                        BoosterType boosterType = BoosterType.getBoosterType(strings[4]);
                         ApplicatorType applicatorType = ApplicatorType.convert(strings[5]);
                         String boosted = strings[6];
                         String boostString = strings[7];
@@ -51,6 +51,7 @@ public class BoostBoosterCommands {
                         if (boosterType.equals(BoosterType.NONE)) { UtilString.get(Messages.INVALID_BOOSTER_TYPE).hex().sendMessage(sender); return; }
                         if (applicatorType.equals(ApplicatorType.NONE)) { UtilString.get(Messages.INVALID_APPLICATOR_TYPE).hex().sendMessage(sender); return; }
                         if (!UtilMethods.isNumeric(boostString)) { UtilString.get(Messages.INVALID_DURATION).hex().sendMessage(sender); return; }
+                        UUID uuid = player.getUniqueId();
 
                         boost = Double.parseDouble(boostString);
 
@@ -66,10 +67,10 @@ public class BoostBoosterCommands {
                             booster = new PersonalBooster(player.getUniqueId(), boosterIdentifier);
                         } else if (boosterType.equals(BoosterType.GLOBAL)) {
                             booster = new GlobalBooster(boosterIdentifier);
-                        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-                            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-                            if (superiorPlayer.hasIsland()) {
-                                booster = new SuperiorSkyblock2Booster(superiorPlayer.getIsland().getUniqueId(), boosterIdentifier);
+                        } else if (boosterType.equals(BoosterType.TEAM) && PluginsChecker.isPluginEnabled(boosterType.getHook())) {
+                            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                                booster = new TeamBooster(teamUUID, boosterIdentifier);
                             }
                         }
 
@@ -83,15 +84,13 @@ public class BoostBoosterCommands {
                         } else if (boosterType.equals(BoosterType.GLOBAL)) {
                             UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
                                     .setVariables(variables).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
-                        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-                            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-                            if (superiorPlayer.hasIsland()) {
-                                List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
-                                for (SuperiorPlayer sPlayer : islandPlayers) {
-                                    if (sPlayer.isOnline()) {
-                                        UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
-                                                .setVariables(variables).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
-                                    }
+                        } else if (boosterType.equals(BoosterType.TEAM) && PluginsChecker.isPluginEnabled(boosterType.getHook())) {
+                            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                                Set<UUID> members = HooksManager.getTeamBoosterHook().getMembers(teamUUID);
+                                for (UUID member : members) {
+                                    UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                            .setVariables(variables).setPlaceholders(player).hex().sendMessage(member);
                                 }
                             }
                         }
@@ -104,9 +103,9 @@ public class BoostBoosterCommands {
                     if (strings.length == 8) {
                         // /moboosters removeboost <player> <duration type> <identifier> <booster type> <applicator> <boosted> <boost>
                         String playerName = strings[1];
-                        DurationType durationType = UtilMethods.getDurationType(strings[2]);
+                        DurationType durationType = DurationType.getDurationType(strings[2]);
                         String identifier = strings[3];
-                        BoosterType boosterType = UtilMethods.getBoosterType(strings[4]);
+                        BoosterType boosterType = BoosterType.getBoosterType(strings[4]);
                         ApplicatorType applicatorType = ApplicatorType.convert(strings[5]);
                         String boosted = strings[6];
                         String boostString = strings[7];
@@ -119,6 +118,7 @@ public class BoostBoosterCommands {
                         if (boosterType.equals(BoosterType.NONE)) { UtilString.get(Messages.INVALID_BOOSTER_TYPE).hex().sendMessage(sender); return; }
                         if (applicatorType.equals(ApplicatorType.NONE)) { UtilString.get(Messages.INVALID_APPLICATOR_TYPE).hex().sendMessage(sender); return; }
                         if (!UtilMethods.isNumeric(boostString)) { UtilString.get(Messages.INVALID_DURATION).hex().sendMessage(sender); return; }
+                        UUID uuid = player.getUniqueId();
 
                         boost = Double.parseDouble(boostString);
 
@@ -135,10 +135,10 @@ public class BoostBoosterCommands {
                             booster = new PersonalBooster(player.getUniqueId(), boosterIdentifier);
                         } else if (boosterType.equals(BoosterType.GLOBAL)) {
                             booster = new GlobalBooster(boosterIdentifier);
-                        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-                            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-                            if (superiorPlayer.hasIsland()) {
-                                booster = new SuperiorSkyblock2Booster(superiorPlayer.getIsland().getUniqueId(), boosterIdentifier);
+                        } else if (boosterType.equals(BoosterType.TEAM) && PluginsChecker.isPluginEnabled(boosterType.getHook())) {
+                            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                                booster = new TeamBooster(teamUUID, boosterIdentifier);
                             }
                         }
 
@@ -152,15 +152,13 @@ public class BoostBoosterCommands {
                         } else if (boosterType.equals(BoosterType.GLOBAL)) {
                             UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
                                     .setVariables(variables).setPlaceholders(player).hex().sendMessageToOnlinePlayers();
-                        } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2) && PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-                            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-                            if (superiorPlayer.hasIsland()) {
-                                List<SuperiorPlayer> islandPlayers = superiorPlayer.getIsland().getIslandMembers(true);
-                                for (SuperiorPlayer sPlayer : islandPlayers) {
-                                    if (sPlayer.isOnline()) {
-                                        UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
-                                                .setVariables(variables).setPlaceholders(player).hex().sendMessage(sPlayer.getUniqueId());
-                                    }
+                        } else if (boosterType.equals(BoosterType.TEAM) && PluginsChecker.isPluginEnabled(boosterType.getHook())) {
+                            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                                Set<UUID> members = HooksManager.getTeamBoosterHook().getMembers(teamUUID);
+                                for (UUID member : members) {
+                                    UtilString.get(messageReceiver).setVariables(player).setVariables(boosterIdentifier)
+                                            .setVariables(variables).setPlaceholders(player).hex().sendMessage(member);
                                 }
                             }
                         }

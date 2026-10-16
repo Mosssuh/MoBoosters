@@ -50,7 +50,7 @@ public class NBTBooster {
         return NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Identifier");
     }
     public static BoosterType getBoosterType(ItemStack itemStack) {
-        return UtilMethods.getBoosterType(NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Type"));
+        return BoosterType.getBoosterType(NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Type"));
     }
     public static ApplicatorType getApplicator(ItemStack itemStack) {
         return ApplicatorType.convert(NBTMethods.getString(itemStack, Config.PLUGIN_NAME+"Applicator"));

@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters.EVENT.Applicators;
 
 import dev.aurelium.auraskills.api.event.skill.XpGainEvent;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

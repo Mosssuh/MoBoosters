@@ -1,11 +1,11 @@
 package mv.mossuh.moboosters.API;
 
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import mv.mossuh.moboosters.MANAGER.BoosterManager;
 import mv.mossuh.moboosters.MANAGER.HooksManager;
-import mv.mossuh.moboosters.HOOK.ApplicatorHook;
-import mv.mossuh.moboosters.HOOK.StateApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.ApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.StateApplicatorHook;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BoostersAPI {

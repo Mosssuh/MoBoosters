@@ -6,7 +6,7 @@ import mv.mossuh.moarmors.CONFIGS.Armors.Armor.ConfigArmor;
 import mv.mossuh.moarmors.CONFIGS.Armors.ItemInfo.ArmorUtil.ArmorIdentifier;
 import mv.mossuh.moarmors.ENUMS.ReceiveType;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import org.bukkit.event.EventHandler;
 
 import java.util.UUID;

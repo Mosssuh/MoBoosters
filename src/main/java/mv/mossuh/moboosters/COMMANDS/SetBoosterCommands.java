@@ -33,7 +33,7 @@ public class SetBoosterCommands {
                         String playerName = strings[1];
                         String identifier = strings[2];
                         DurationType durationType = DurationType.TEMP;
-                        BoosterType boosterType = UtilMethods.getBoosterType(strings[3]);
+                        BoosterType boosterType = BoosterType.getBoosterType(strings[3]);
                         ApplicatorType applicatorType = ApplicatorType.convert(strings[4]);
                         String boosted = strings[5];
                         String boostAsString = strings[6];
@@ -85,7 +85,7 @@ public class SetBoosterCommands {
                         String playerName = strings[1];
                         String identifier = strings[2];
                         DurationType durationType = DurationType.PERM;
-                        BoosterType boosterType = UtilMethods.getBoosterType(strings[3]);
+                        BoosterType boosterType = BoosterType.getBoosterType(strings[3]);
                         ApplicatorType applicatorType = ApplicatorType.convert(strings[4]);
                         String boosted = strings[5];
                         String boostAsString = strings[6];

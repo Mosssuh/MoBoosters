@@ -123,7 +123,7 @@ public class ConfigManager {
                     }
 
                     String identifier = config.getString("Boosters." + code + ".identifier");
-                    BoosterType boosterType = UtilMethods.getBoosterType(typeString);
+                    BoosterType boosterType = BoosterType.getBoosterType(typeString);
                     ApplicatorType applicatorType = ApplicatorType.convert(applicatorString);
 
                     String itemMaterial = config.getString("Boosters." + code + ".item-info.material");

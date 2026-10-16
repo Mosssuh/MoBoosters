@@ -1,18 +1,15 @@
 package mv.mossuh.moboosters.MANAGER;
 
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
-import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.Boost;
 import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.PermanentBoost;
 import mv.mossuh.moboosters.MODEL.Booster.BoostTypes.TemporaryBoost;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.mocore.ENUMS.PluginType;
 import mv.mossuh.mocore.UTILITIES.PluginsChecker;
 import mv.mossuh.moboosters.MODEL.ActiveBooster.ActiveBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.GlobalBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.PersonalBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.TeamBooster;
 import mv.mossuh.moboosters.MODEL.Booster.Duration.Boosts;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.UTILITIES.Enums.BoosterType;
@@ -194,16 +191,15 @@ public class ActiveBoosterManager {
 
         double personal = getTotalBoostCached(personalBooster, false);
         double global = getTotalBoostCached(globalBooster, false);
-        double superiorSkyblock2 = 0;
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(uuid);
-            if (superiorPlayer != null && superiorPlayer.hasIsland()) {
-                UUID islandUUID = superiorPlayer.getIsland().getUniqueId();
-                SuperiorSkyblock2Booster superiorSkyblock2Booster = new SuperiorSkyblock2Booster(islandUUID, new BoosterIdentifier(identifier, BoosterType.SUPERIORSKYBLOCK2, applicator, boosted));
-                superiorSkyblock2 = getTotalBoostCached(superiorSkyblock2Booster, false);
+        double team = 0;
+        if (PluginsChecker.isPluginEnabled(BoosterType.TEAM.getHook())) {
+            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                TeamBooster teamBooster = new TeamBooster(teamUUID, new BoosterIdentifier(identifier, BoosterType.TEAM, applicator, boosted));
+                team = getTotalBoostCached(teamBooster, false);
             }
         }
-        return personal+global+superiorSkyblock2;
+        return personal+global+team;
     }
 
     public static double getTotalBoostCached(UUID uuid, ApplicatorType applicator, String boosted) {
@@ -213,16 +209,15 @@ public class ActiveBoosterManager {
 
         double personal = getTotalBoostCached(personalBooster, true);
         double global = getTotalBoostCached(globalBooster, true);
-        double superiorSkyblock2 = 0;
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(uuid);
-            if (superiorPlayer != null && superiorPlayer.hasIsland()) {
-                UUID islandUUID = superiorPlayer.getIsland().getUniqueId();
-                SuperiorSkyblock2Booster superiorSkyblock2Booster = new SuperiorSkyblock2Booster(islandUUID, new BoosterIdentifier(identifier, BoosterType.SUPERIORSKYBLOCK2, applicator, boosted));
-                superiorSkyblock2 = getTotalBoostCached(superiorSkyblock2Booster, true);
+        double team = 0;
+        if (PluginsChecker.isPluginEnabled(BoosterType.TEAM.getHook())) {
+            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                TeamBooster teamBooster = new TeamBooster(teamUUID, new BoosterIdentifier(identifier, BoosterType.TEAM, applicator, boosted));
+                team = getTotalBoostCached(teamBooster, true);
             }
         }
-        return personal+global+superiorSkyblock2;
+        return personal+global+team;
     }
 
     public static Map<BoosterType, Double> getBoosts(UUID uuid, ApplicatorType applicator, String boosted) {
@@ -233,18 +228,17 @@ public class ActiveBoosterManager {
 
         double personalBoost = ActiveBoosterManager.getBoost(personalBooster, true);
         double globalBoost = ActiveBoosterManager.getBoost(globalBooster, true);
-        double superiorSkyblock2Boost = 0;
-        if (PluginsChecker.isPluginEnabled(PluginType.SuperiorSkyblock2)) {
-            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(uuid);
-            if (superiorPlayer != null && superiorPlayer.hasIsland()) {
-                UUID islandUUID = superiorPlayer.getIsland().getUniqueId();
-                SuperiorSkyblock2Booster superiorSkyblock2Booster = new SuperiorSkyblock2Booster(islandUUID, new BoosterIdentifier(identifier, BoosterType.SUPERIORSKYBLOCK2, applicator, boosted));
-                superiorSkyblock2Boost = ActiveBoosterManager.getBoost(superiorSkyblock2Booster, true);
+        double team = 0;
+        if (PluginsChecker.isPluginEnabled(BoosterType.TEAM.getHook())) {
+            if (HooksManager.getTeamBoosterHook().hasTeam(uuid)) {
+                UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByPlayer(uuid);
+                TeamBooster teamBooster = new TeamBooster(teamUUID, new BoosterIdentifier(identifier, BoosterType.TEAM, applicator, boosted));
+                team = ActiveBoosterManager.getBoost(teamBooster, true);
             }
         }
         result.put(BoosterType.PERSONAL, personalBoost);
         result.put(BoosterType.GLOBAL, globalBoost);
-        result.put(BoosterType.SUPERIORSKYBLOCK2, superiorSkyblock2Boost);
+        result.put(BoosterType.TEAM, team);
         return result;
     }
 }

@@ -1,7 +1,7 @@
 package mv.mossuh.moboosters.EVENT.Applicators;
 
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
-import mv.mossuh.moboosters.HOOK.EventApplicatorHook;
+import mv.mossuh.moboosters.MODEL.Hook.Applicator.EventApplicatorHook;
 import mv.mossuh.mopets.API.Events.PetChangeExpEvent;
 import mv.mossuh.mopets.CONFIGS.Pets.Pet.ConfigPet;
 import mv.mossuh.mopets.CONFIGS.Pets.PetIdentifier;

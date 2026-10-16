@@ -11,6 +11,7 @@ public class Identifiers {
 
     public Identifiers(List<String> identifiers) {
         if (identifiers == null) return;
+        this.identifiers.add(Config.DEFAULT_IDENTIFIER);
 
         for (String identifier : identifiers) {
             String id = identifier.toLowerCase();
@@ -22,7 +23,11 @@ public class Identifiers {
         }
     }
 
-    public List<String> getIdentifiers() { return new ArrayList<>(identifiers); }
+    public List<String> getIdentifiers() {
+        List<String> id = new ArrayList<>(identifiers);;
+        id.addAll(internalIdentifiers);
+        return id;
+    }
 
     public void setIdentifiers(List<String> identifiers) {
         Set<String> newIdentifiers = new HashSet<>();
@@ -49,7 +54,6 @@ public class Identifiers {
     // Checker for Internal and Config Identifiers
     public boolean hasIdentifier(String identifier) {
         if (identifier == null || identifier.isEmpty()) return false;
-        if (identifier.equalsIgnoreCase("default")) return true;
         identifier = identifier.toLowerCase();
 
         return identifiers.contains(identifier) || internalIdentifiers.contains(identifier);

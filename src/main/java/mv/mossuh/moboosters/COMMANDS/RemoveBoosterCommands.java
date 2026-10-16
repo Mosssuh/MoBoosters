@@ -1,5 +1,6 @@
 package mv.mossuh.moboosters.COMMANDS;
 
+import mv.mossuh.moboosters.MANAGER.HooksManager;
 import mv.mossuh.moboosters.UTILITIES.Enums.ApplicatorType;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -9,7 +10,7 @@ import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.Booster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.GlobalBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.InvalidBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.PersonalBooster;
-import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.SuperiorSkyblock2Booster;
+import mv.mossuh.moboosters.MODEL.Booster.BoosterTypes.TeamBooster;
 import mv.mossuh.moboosters.MODEL.Booster.BoosterIdentifier;
 import mv.mossuh.moboosters.DATA.Config.Config.Config;
 import mv.mossuh.moboosters.DATA.Config.Messages;
@@ -30,12 +31,12 @@ public class RemoveBoosterCommands {
             }
 
             if (strings.length >= 6) {
-                // /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> [<player>/<islandName]
+                // /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> [<player>/<teamName>]
                 String identifier = strings[1];
-                BoosterType boosterType = UtilMethods.getBoosterType(strings[2]);
+                BoosterType boosterType = BoosterType.getBoosterType(strings[2]);
                 ApplicatorType applicatorType = ApplicatorType.convert(strings[3]);
                 String boosted = strings[4];
-                DurationType durationType = UtilMethods.getDurationType(strings[5]);
+                DurationType durationType = DurationType.getDurationType(strings[5]);
                 String forWho = strings[6];
 
                 if (!Config.IDENTIFIERS.hasIdentifier(identifier)) {
@@ -62,13 +63,13 @@ public class RemoveBoosterCommands {
                         return;
                     }
                     booster = new PersonalBooster(player.getUniqueId(), bi);
-                } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
-                    UUID islandUUID = UtilMethods.getIslandUUIDByName(forWho);
-                    if (islandUUID == null) {
+                } else if (boosterType.equals(BoosterType.TEAM)) {
+                    UUID id = HooksManager.getTeamBoosterHook().getTeamByName(forWho);
+                    if (id == null) {
                         UtilString.get(Messages.INVALID_ISLAND_NAME).hex().sendMessage(sender);
                         return;
                     }
-                    booster = new SuperiorSkyblock2Booster(islandUUID, bi);
+                    booster = new TeamBooster(id, bi);
                 } else if (boosterType.equals(BoosterType.GLOBAL)){
                     booster = new GlobalBooster(bi);
                 }
@@ -84,10 +85,10 @@ public class RemoveBoosterCommands {
                         break;
                 }
             } else if (strings.length == 4 || strings.length == 5) {
-                // /moboosters removebooster <identifier> <booster type> <duration type> [<player>/<islandName]
+                // /moboosters removebooster <identifier> <booster type> <duration type> [<player>/<teamName>]
                 String identifier = strings[1];
-                BoosterType boosterType = UtilMethods.getBoosterType(strings[2]);
-                DurationType durationType = UtilMethods.getDurationType(strings[3]);
+                BoosterType boosterType = BoosterType.getBoosterType(strings[2]);
+                DurationType durationType = DurationType.getDurationType(strings[3]);
                 String forWho = strings[4];
 
                 if (!Config.IDENTIFIERS.hasIdentifier(identifier)) {
@@ -107,13 +108,13 @@ public class RemoveBoosterCommands {
                         return;
                     }
                     uuid = player.getUniqueId();
-                } else if (boosterType.equals(BoosterType.SUPERIORSKYBLOCK2)) {
-                    UUID islandUUID = UtilMethods.getIslandUUIDByName(forWho);
-                    if (islandUUID == null) {
+                } else if (boosterType.equals(BoosterType.TEAM)) {
+                    UUID teamUUID = HooksManager.getTeamBoosterHook().getTeamByName(forWho);
+                    if (teamUUID == null) {
                         UtilString.get(Messages.INVALID_ISLAND_NAME).hex().sendMessage(sender);
                         return;
                     }
-                    uuid = islandUUID;
+                    uuid = teamUUID;
                 }
 
                 switch (durationType) {
@@ -126,8 +127,8 @@ public class RemoveBoosterCommands {
                         break;
                 }
             } else {
-                UtilString.get(Config.PREFIX+" &cUse: /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> &4[<player>/<islandName]").hex().sendMessage(sender);
-                UtilString.get(Config.PREFIX+" &cUse: /moboosters removebooster <identifier> <booster type> <duration type> &4[<player>/<islandName]").hex().sendMessage(sender);
+                UtilString.get(Config.PREFIX+" &cUse: /moboosters removebooster <identifier> <booster type> <applicator> <boosted> <duration type> &4[<player>/<teamName]").hex().sendMessage(sender);
+                UtilString.get(Config.PREFIX+" &cUse: /moboosters removebooster <identifier> <booster type> <duration type> &4[<player>/<teamName]").hex().sendMessage(sender);
             }
         }
     }
